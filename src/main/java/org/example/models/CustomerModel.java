@@ -2,10 +2,19 @@ package org.example.models;
 
 public class CustomerModel {
 
+    private Long id;
     private String fullName;
     private String registrationCode;
     private String email;
     private String telephone;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getFullName() {
         return fullName;
