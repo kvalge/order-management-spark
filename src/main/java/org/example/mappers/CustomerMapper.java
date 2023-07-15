@@ -7,7 +7,7 @@ import java.util.UUID;
 
 public class CustomerMapper {
 
-    public CustomerModel createFromParams(Request request) {
+    public CustomerModel requestToEntity(Request request) {
         CustomerModel customer = new CustomerModel();
 
         customer.setId(1L);

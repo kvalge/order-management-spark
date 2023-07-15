@@ -11,7 +11,7 @@ public class CustomerService {
     CustomerRepository customerRepository = new CustomerRepository();
 
     public void insert(Request request) {
-        CustomerModel customerModel = customerMapper.createFromParams(request);
-        customerRepository.save(customerModel);
+        CustomerModel customer = customerMapper.requestToEntity(request);
+        customerRepository.save(customer);
     }
 }

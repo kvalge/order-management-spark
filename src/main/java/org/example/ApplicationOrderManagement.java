@@ -9,8 +9,9 @@ import static spark.Spark.*;
 public class ApplicationOrderManagement {
 
     public static void main(String[] args) {
-        CustomerController customerController = new CustomerController();
         port(8080);
+
+        CustomerController customerController = new CustomerController();
 
         get("/customer", (request, response) -> {
             return new ModelAndView(null, "customer.hbs");
