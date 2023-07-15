@@ -1,9 +1,26 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <title>Customer</title>
 </head>
 <body>
-<h1>Customer Data</h1>
+<h1>Insert Customer Data</h1>
+<form action="/customer" method="post" enctype="multipart/form-data">
+    <table id="customer">
+        <tr>
+            <td>Full Name</td>
+            <td>Email</td>
+            <td>Telephone</td>
+        </tr>
+            <tr>
+                <td><input type="text" name="full-name" placeholder="Full name" value="{{this.fullName}}"></td>
+                <td><input type="text" name="email" placeholder="Email" value="{{this.email}}"></td>
+                <td><input type="text" name="telephone" placeholder="Telephone" value="{{this.telephone}}"></td>
+            </tr>
+    </table>
+    <div>
+        <input type="submit" value="Submit" style="background-color: navy; color: white">
+    </div>
+</form>
 </body>
 </html>
