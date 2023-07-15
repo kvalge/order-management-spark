@@ -16,7 +16,7 @@ dependencies {
     implementation ("org.slf4j:slf4j-api:1.7.36")
     implementation ("org.slf4j:slf4j-jdk14:1.7.36")
 
-    implementation ("org.postgresql:postgresql:42.3.6")
+    implementation ("org.postgresql:postgresql:42.3.8")
 
     testImplementation(platform("org.junit:junit-bom:5.9.1"))
     testImplementation("org.junit.jupiter:junit-jupiter")
