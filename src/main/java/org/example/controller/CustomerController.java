@@ -1,6 +1,6 @@
-package org.example.controllers;
+package org.example.controller;
 
-import org.example.services.CustomerService;
+import org.example.service.CustomerService;
 import spark.Request;
 import spark.Response;
 

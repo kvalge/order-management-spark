@@ -1,8 +1,8 @@
-package org.example.services;
+package org.example.service;
 
-import org.example.mappers.CustomerMapper;
-import org.example.models.CustomerModel;
-import org.example.repositories.CustomerRepository;
+import org.example.mapper.CustomerMapper;
+import org.example.model.CustomerModel;
+import org.example.repository.CustomerRepository;
 import spark.Request;
 
 public class CustomerService {

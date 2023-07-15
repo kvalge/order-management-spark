@@ -1,6 +1,6 @@
-package org.example.mappers;
+package org.example.mapper;
 
-import org.example.models.CustomerModel;
+import org.example.model.CustomerModel;
 import spark.Request;
 
 import java.util.UUID;

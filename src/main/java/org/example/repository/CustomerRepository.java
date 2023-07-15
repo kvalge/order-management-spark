@@ -1,6 +1,6 @@
-package org.example.repositories;
+package org.example.repository;
 
-import org.example.models.CustomerModel;
+import org.example.model.CustomerModel;
 
 public class CustomerRepository {
 

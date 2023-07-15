@@ -1,6 +1,6 @@
 package org.example;
 
-import org.example.controllers.CustomerController;
+import org.example.controller.CustomerController;
 import spark.ModelAndView;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 
