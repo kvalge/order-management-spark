@@ -1,6 +1,6 @@
 # ORDER MANAGEMENT SYSTEM
 
-Orders' system API to manage products, orders, ordr lines and customers data.  
+Orders' system API to manage products, orders, order lines and customers data.  
 
 Framework Spark.  
 
