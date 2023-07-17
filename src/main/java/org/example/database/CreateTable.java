@@ -3,12 +3,11 @@ package org.example.database;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import static org.example.constants.Constants.*;
+
 public class CreateTable {
 
     Configuration configuration = new Configuration();
-    public static final String QUERY_FAILED = "Query failed: ";
-
-    public static final String TABLE_CUSTOMER = "customer";
 
     public void addTables() {
         try {
