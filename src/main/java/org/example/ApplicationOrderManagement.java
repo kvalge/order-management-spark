@@ -1,7 +1,8 @@
 package org.example;
 
+import org.example.database.DatabaseMigrator;
+
 import org.example.controller.CustomerController;
-import org.example.database.CreateTable;
 import spark.ModelAndView;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 
@@ -12,8 +13,8 @@ public class ApplicationOrderManagement {
     public static void main(String[] args) {
         port(8080);
 
-        CreateTable createTable = new CreateTable();
-        createTable.addTables();
+        DatabaseMigrator databaseMigrator = new DatabaseMigrator();
+        databaseMigrator.migrate();
 
         CustomerController customerController = new CustomerController();
 

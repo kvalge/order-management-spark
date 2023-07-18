@@ -18,6 +18,8 @@ dependencies {
 
     implementation ("org.postgresql:postgresql:42.3.8")
 
+    implementation ("org.flywaydb:flyway-core:9.20.1")
+
     testImplementation(platform("org.junit:junit-bom:5.9.1"))
     testImplementation("org.junit.jupiter:junit-jupiter")
 

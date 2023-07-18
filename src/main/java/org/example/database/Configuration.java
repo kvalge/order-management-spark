@@ -6,22 +6,32 @@ import java.sql.SQLException;
 
 public class Configuration {
 
-
-    public static final String DATABASE_NAME = "order_spark";
-    public static final String URL = "jdbc:postgresql://localhost:5432/" + DATABASE_NAME;
-    public static final String USER = "postgres";
-    public static final String PASSWORD = "postgres";
+    public String url = "jdbc:postgresql://localhost:5432/order_spark";
+    public String user = "postgres";
+    public String password = "postgres";
 
     public Connection connect() {
         Connection conn = null;
 
         try {
-            conn = DriverManager.getConnection(URL, USER, PASSWORD);
+            conn = DriverManager.getConnection(url, user, password);
             conn.setAutoCommit(true);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
             e.printStackTrace();
         }
         return conn;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public String getUser() {
+        return user;
+    }
+
+    public String getPassword() {
+        return password;
     }
 }
