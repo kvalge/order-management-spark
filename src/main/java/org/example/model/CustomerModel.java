@@ -2,6 +2,7 @@ package org.example.model;
 
 public class CustomerModel {
 
+    public static final String TABLENAME = "customer";
     private Long id;
     private String fullName;
     private String registrationCode;
