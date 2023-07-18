@@ -5,7 +5,7 @@ import org.example.model.CustomerModel;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import static org.example.constants.Constants.QUERY_FAILED;
+import static org.example.constants.Constants.*;
 
 public class DatabaseQuery {
 

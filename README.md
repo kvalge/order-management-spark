@@ -4,7 +4,7 @@ Orders' system API to manage products, orders, order lines and customers data.
 
 Framework: Spark.  
 
-Database: PostgresSql.
+Database: PostgresSql.  
 Database migration tool: Flyway.  
 Logging API: SLF4J.  
 
