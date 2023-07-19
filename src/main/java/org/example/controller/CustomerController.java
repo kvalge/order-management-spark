@@ -11,6 +11,11 @@ public class CustomerController {
     public String insert(Request request, Response response) {
         customerService.insert(request);
 
+        return redirect(response, "/home");
+    }
+
+    public String redirect(Response response, String path) {
+        response.redirect(path);
         return null;
     }
 }

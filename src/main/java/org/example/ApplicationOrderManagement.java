@@ -1,8 +1,8 @@
 package org.example;
 
 import org.example.database.DatabaseMigrator;
-
 import org.example.controller.CustomerController;
+
 import spark.ModelAndView;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 
@@ -17,6 +17,10 @@ public class ApplicationOrderManagement {
         databaseMigrator.migrate();
 
         CustomerController customerController = new CustomerController();
+
+        get("/home", (request, response) -> {
+            return new ModelAndView(null, "home.hbs");
+        }, new HandlebarsTemplateEngine());
 
         get("/customer", (request, response) -> {
             return new ModelAndView(null, "customer.hbs");

@@ -2,7 +2,7 @@ package org.example.model;
 
 public class CustomerModel {
 
-    public static final String TABLENAME = "customer";
+    public static final String TABLE_NAME = "customer";
     private Long id;
     private String fullName;
     private String registrationCode;

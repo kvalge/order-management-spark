@@ -12,6 +12,6 @@ public class CustomerService {
 
     public void insert(Request request) {
         CustomerModel customer = customerMapper.requestToEntity(request);
-        customerRepository.save(customer);
+        customerRepository.insert(customer);
     }
 }
