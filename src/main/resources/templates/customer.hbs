@@ -3,35 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+          integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
     <title>Customer</title>
 </head>
-<body>
-<div class="container">
-    <h1>Insert Customer Data</h1>
-    <form action="/customer" method="post">
-        <table id="customer">
-            <tr>
-                <td>Full Name</td>
-                <td>Email</td>
-                <td>Telephone</td>
-            </tr>
-            <tr>
-                <td><label>
-                    <input type="text" name="full-name" placeholder="Full name" value="{{this.fullName}}">
-                </label></td>
-                <td><label>
-                    <input type="text" name="email" placeholder="Email" value="{{this.email}}">
-                </label></td>
-                <td><label>
-                    <input type="text" name="telephone" placeholder="Telephone" value="{{this.telephone}}">
-                </label></td>
-            </tr>
-        </table>
-        <div>
-            <button type="submit" value="Submit" class="btn btn-primary">Submit</button>
+<body style="margin: 0 auto; width: 960px; background-color: ghostwhite;">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Order System</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/home">Home Page</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/customer">Register</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Products</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Orders</a>
+                </li>
+            </ul>
         </div>
-    </form>
+    </div>
+</nav>
+<div class="container-sm" style="text-align: center">
+    <h1 style="margin: 30px">Customer Registration</h1>
+    <div class="row justify-content-center">
+        <form action="/customer" method="post">
+            <table id="customer">
+                <tr>
+                    <td>Full Name</td>
+                    <td>Email</td>
+                    <td>Telephone</td>
+                </tr>
+                <tr>
+                    <td><label>
+                        <input type="text" name="full-name" placeholder="Full name" value="{{this.fullName}}">
+                    </label></td>
+                    <td><label>
+                        <input type="text" name="email" placeholder="Email" value="{{this.email}}">
+                    </label></td>
+                    <td><label>
+                        <input type="text" name="telephone" placeholder="Telephone" value="{{this.telephone}}">
+                    </label></td>
+                </tr>
+            </table>
+            <div>
+                <button type="submit" value="Submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+    </div>
 </div>
 </body>
 </html>
