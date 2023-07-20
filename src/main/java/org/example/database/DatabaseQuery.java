@@ -7,8 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import static java.lang.String.join;
-import static java.util.stream.Collectors.toList;
-import static org.example.constants.Constants.*;
+import static org.example.constants.Constants.QUERY_FAILED;
 
 public class DatabaseQuery {
 
@@ -25,11 +24,15 @@ public class DatabaseQuery {
     }
 
     String insertQuery(String table, Map<String, Object> map) {
-        List<String> keys = map.keySet().stream().sorted().collect(toList());
-        String mapKeys = join(", ", keys);
-
+        List<String> keys = new ArrayList<>();
         List<String> values = new ArrayList<>();
-        map.forEach((k, v) -> values.add("'" + v.toString() + "'"));
+
+        map.forEach((k, v) -> {
+            keys.add(k);
+            values.add("'" + v.toString() + "'");
+        });
+
+        String mapKeys = join(", ", keys);
         String valueKeys = join(", ", values);
 
         return "INSERT INTO " + table + " (id, " + mapKeys + ") " +

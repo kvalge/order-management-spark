@@ -3,8 +3,8 @@ package org.example.repository;
 import org.example.database.DatabaseQuery;
 import org.example.model.CustomerModel;
 
+import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.TreeMap;
 
 public class CustomerRepository {
 
@@ -15,7 +15,7 @@ public class CustomerRepository {
     }
 
     private Map<String, Object> createCustomerMap(CustomerModel customer) {
-        TreeMap<String, Object> map = new TreeMap<>();
+        LinkedHashMap<String, Object> map = new LinkedHashMap<>();
 
         map.put("full_name", customer.getFullName());
         map.put("registration_code", customer.getRegistrationCode());
