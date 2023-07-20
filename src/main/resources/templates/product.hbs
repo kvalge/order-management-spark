@@ -16,7 +16,7 @@
                     <a class="nav-link active" href="/home">Home Page</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/customer">Register</a>
+                    <a class="nav-link active" href="/customer">Register</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/product">Products</a>
@@ -29,29 +29,25 @@
     </div>
 </nav>
 <div class="container-sm" style="text-align: center">
-    <h1 style="margin: 30px">Customer Registration</h1>
+    <h1 style="margin: 30px">Add New Product</h1>
     <div class="row justify-content-center">
-        <form action="/customer" method="post">
-            <table id="customer">
+        <form action="/product" method="post">
+            <table id="product">
                 <tr>
-                    <td>Full Name</td>
-                    <td>Email</td>
-                    <td>Telephone</td>
+                    <td>Name</td>
+                    <td>Unit Price</td>
                 </tr>
                 <tr>
                     <td><label>
-                        <input type="text" name="full-name" placeholder="Full name" value="{{this.fullName}}">
+                        <input type="text" name="name" placeholder="Name" value="{{this.name}}">
                     </label></td>
                     <td><label>
-                        <input type="text" name="email" placeholder="Email" value="{{this.email}}">
-                    </label></td>
-                    <td><label>
-                        <input type="text" name="telephone" placeholder="Telephone" value="{{this.telephone}}">
+                        <input type="text" name="price" placeholder="Price" value="{{this.price}}">
                     </label></td>
                 </tr>
             </table>
             <div>
-                <button type="submit" value="Submit" class="btn btn-primary">Submit</button>
+                <button type="submit" value="Submit" class="btn btn-primary">Add New</button>
             </div>
         </form>
     </div>
