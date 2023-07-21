@@ -4,7 +4,7 @@ import org.example.service.CustomerService;
 import spark.Request;
 import spark.Response;
 
-public class CustomerController {
+public class CustomerController extends Controller{
 
     CustomerService customerService = new CustomerService();
 
@@ -12,10 +12,5 @@ public class CustomerController {
         customerService.insert(request);
 
         return redirect(response, "/home");
-    }
-
-    public String redirect(Response response, String path) {
-        response.redirect(path);
-        return null;
     }
 }
