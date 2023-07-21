@@ -33,5 +33,6 @@ public class ApplicationOrderManagement {
         post("/customer", customerController::insert);
 
         post("/product", productController::insert);
+        post("/product/:id/delete", productController::delete);
     }
 }

@@ -24,4 +24,8 @@ public class ProductService {
 
         return  productMapper.toRequestList(products);
     }
+
+    public void delete(Long id) {
+        productRepository.delete(id);
+    }
 }

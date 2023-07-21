@@ -56,8 +56,8 @@
     <h2 style="margin: 40px">List of All Products</h2>
 </div>
 <div>
-    <table class="table" style="text-align: center">
-        <thead class="thead-dark">
+    <table class="table table-sm" style="text-align: center">
+        <thead class="thead-dark" style="height: 50px">
         <tr>
             <th>Product Name</th>
             <th>Price</th>
@@ -66,11 +66,15 @@
         </thead>
         {{#each product}}
             <tr>
-                <td>{{this.name}}</td>
-                <td>{{this.price}}</td>
+                <td style="vertical-align:middle">{{this.name}}</td>
+                <td style="vertical-align:middle">{{this.price}}</td>
                 <td>
-                    <button type="button" class="btn btn-warning">Update</button>
-                    <button type="button" class="btn btn-danger">Delete</button>
+                    <form>
+                        <button type="button" class="btn btn-warning" style="margin-bottom: 5px; padding: 5px">Update</button>
+                    </form>
+                    <form action="/product/{{this.id}}/delete" method="post">
+                        <button type="submit" class="btn btn-danger" style="padding: 7px">Delete</button>
+                    </form>
                 </td>
             </tr>
         {{/each}}

@@ -19,6 +19,10 @@ public class ProductRepository {
         return databaseQuery.getAll(ProductModel.TABLE_NAME);
     }
 
+    public void delete(Long id) {
+        databaseQuery.delete(ProductModel.TABLE_NAME, id);
+    }
+
     private Map<String, Object> createProductMap(ProductModel product) {
         LinkedHashMap<String, Object> map = new LinkedHashMap<>();
 

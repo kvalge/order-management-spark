@@ -36,7 +36,9 @@ public class DatabaseQuery {
 
             while (results.next()) {
                 ProductModel productModel = new ProductModel();
+                productModel.setId(results.getLong("id"));
                 productModel.setName(results.getString("name"));
+                productModel.setSku_code(results.getString("sku_code"));
                 productModel.setPrice(results.getString("price"));
                 list.add(productModel);
             }
@@ -46,6 +48,16 @@ public class DatabaseQuery {
             e.getStackTrace();
         }
         return null;
+    }
+
+    public void delete(String table, Long id) {
+        try {
+            Statement statement = configuration.connect().createStatement();
+            statement.execute("DELETE FROM " + table + " WHERE id = " + id);
+        } catch (SQLException e) {
+            System.out.println(QUERY_FAILED + e.getMessage());
+            e.getStackTrace();
+        }
     }
 
     String insertQuery(String table, Map<String, Object> map) {
