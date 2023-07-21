@@ -28,6 +28,7 @@
         </div>
     </div>
 </nav>
+
 <div class="container-sm" style="text-align: center">
     <h1 style="margin: 30px">Add New Product</h1>
     <div class="row justify-content-center">
@@ -51,6 +52,24 @@
             </div>
         </form>
     </div>
+    <h1 style="margin: 30px">List of All Products</h1>
+</div>
+<div>
+    <table class="table table-active table-sm">
+        <thead class="thead-dark">
+        <tr>
+            <th>Product Name</th>
+            <th>Price</th>
+        </tr>
+        </thead>
+        {{#each product}}
+            <tr>
+                <td>{{this.name}}</td>
+                <td>{{this.price}}</td>
+            </tr>
+        {{/each}}
+        <tr>
+    </table>
 </div>
 </body>
 </html>

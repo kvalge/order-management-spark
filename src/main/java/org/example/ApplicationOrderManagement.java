@@ -28,11 +28,10 @@ public class ApplicationOrderManagement {
             return new ModelAndView(null, "customer.hbs");
         }, new HandlebarsTemplateEngine());
 
-        get("/product", (request, response) -> {
-            return new ModelAndView(null, "product.hbs");
-        }, new HandlebarsTemplateEngine());
+        get("/product", productController::getAll);
 
         post("/customer", customerController::insert);
+
         post("/product", productController::insert);
     }
 }

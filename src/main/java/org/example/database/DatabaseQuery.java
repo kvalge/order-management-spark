@@ -1,5 +1,8 @@
 package org.example.database;
 
+import org.example.model.ProductModel;
+
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -21,6 +24,28 @@ public class DatabaseQuery {
             System.out.println(QUERY_FAILED + e.getMessage());
             e.getStackTrace();
         }
+    }
+
+    public List<ProductModel> getAll(String table) {
+        try {
+            Statement statement = configuration.connect().createStatement();
+            statement.execute("SELECT * FROM " + table);
+            ResultSet results = statement.getResultSet();
+
+            List<ProductModel> list = new ArrayList<>();
+
+            while (results.next()) {
+                ProductModel productModel = new ProductModel();
+                productModel.setName(results.getString("name"));
+                productModel.setPrice(results.getString("price"));
+                list.add(productModel);
+            }
+            return list;
+        } catch (SQLException e) {
+            System.out.println(QUERY_FAILED + e.getMessage());
+            e.getStackTrace();
+        }
+        return null;
     }
 
     String insertQuery(String table, Map<String, Object> map) {
