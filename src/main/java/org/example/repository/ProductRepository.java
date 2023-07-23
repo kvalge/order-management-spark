@@ -4,7 +4,9 @@ import org.example.database.DatabaseQuery;
 import org.example.model.ProductModel;
 import spark.Request;
 
-import java.util.*;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 import static java.lang.Long.parseLong;
 
@@ -16,23 +18,14 @@ public class ProductRepository {
         databaseQuery.insert(ProductModel.TABLE_NAME, createProductMap(productModel));
     }
 
-    public List<ProductModel> getAll() {
-        List<Object> queryAll = databaseQuery.getAll(ProductModel.TABLE_NAME);
-
-        List<ProductModel> productModelList = new ArrayList<>();
-
-        for (Object object : queryAll) {
-            ProductModel productModel = getProductModel(object);
-            productModelList.add(productModel);
-        }
-        return productModelList;
+    public List<Object> getAll() {
+        return databaseQuery.getAll(ProductModel.TABLE_NAME);
     }
 
-    public ProductModel getById(Request request) {
+    public Object getById(Request request) {
         Long id = parseLong(request.params(":id"));
-        Object object = databaseQuery.getById(ProductModel.TABLE_NAME, id);
 
-        return getProductModel(object);
+        return databaseQuery.getById(ProductModel.TABLE_NAME, id);
     }
 
     public void update(ProductModel productModel, Long id) {
@@ -51,17 +44,5 @@ public class ProductRepository {
         map.put("price", product.getPrice());
 
         return map;
-    }
-
-    private static ProductModel getProductModel(Object object) {
-        String[] objectSplit = object.toString().split(",");
-
-        ProductModel productModel = new ProductModel();
-        productModel.setId(Long.valueOf(objectSplit[0].substring(1)));
-        productModel.setName(objectSplit[1]);
-        productModel.setSku_code(objectSplit[2]);
-        productModel.setPrice(objectSplit[3].substring(0, 6));
-
-        return productModel;
     }
 }

@@ -21,26 +21,28 @@ public class ProductMapper {
         return product;
     }
 
-    public List<ProductViewModel> toRequestList(List<ProductModel> productModels) {
+    public ProductViewModel entityToRequest(Object productObject) {
+        return getProductViewModel(productObject);
+    }
+
+    public List<ProductViewModel> toRequestList(List<Object> productObjectList) {
         List<ProductViewModel> productViewModels = new ArrayList<>();
 
-        for (ProductModel productModel : productModels) {
-            ProductViewModel productViewModel = new ProductViewModel();
-            productViewModel.setId(productModel.getId());
-            productViewModel.setName(productModel.getName());
-            productViewModel.setSku_code(productModel.getSku_code());
-            productViewModel.setPrice(productModel.getPrice());
+        for (Object object : productObjectList) {
+            ProductViewModel productViewModel = getProductViewModel(object);
             productViewModels.add(productViewModel);
         }
         return productViewModels;
     }
 
-    public ProductViewModel entityToRequest(ProductModel productModel) {
+    private static ProductViewModel getProductViewModel(Object object) {
+        String[] objectSplit = object.toString().split(",");
+
         ProductViewModel productViewModel = new ProductViewModel();
-        productViewModel.setId(productModel.getId());
-        productViewModel.setName(productModel.getName());
-        productViewModel.setSku_code(productModel.getSku_code());
-        productViewModel.setPrice(productModel.getPrice());
+        productViewModel.setId(Long.valueOf(objectSplit[0].substring(1)));
+        productViewModel.setName(objectSplit[1]);
+        productViewModel.setSku_code(objectSplit[2]);
+        productViewModel.setPrice(objectSplit[3].substring(0, 6));
 
         return productViewModel;
     }

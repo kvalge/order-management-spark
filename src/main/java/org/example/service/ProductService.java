@@ -22,15 +22,15 @@ public class ProductService {
     }
 
     public List<ProductViewModel> getAll() {
-        List<ProductModel> products = productRepository.getAll();
+        List<Object> productObjecList = productRepository.getAll();
 
-        return  productMapper.toRequestList(products);
+        return productMapper.toRequestList(productObjecList);
     }
 
     public ProductViewModel getById(Request request) {
-        ProductModel product = productRepository.getById(request);
+        Object productObject = productRepository.getById(request);
 
-        return productMapper.entityToRequest(product);
+        return productMapper.entityToRequest(productObject);
     }
 
     public void update(Request request) {
