@@ -18,7 +18,6 @@ public class ProductRepository {
 
         List<ProductModel> productModelList = new ArrayList<>();
         for (Object object : queryAll) {
-            System.out.println(object);
             String[] objectSplit = object.toString().split(",");
             ProductModel productModel = new ProductModel();
             productModel.setId(Long.valueOf(objectSplit[0].substring(1)));

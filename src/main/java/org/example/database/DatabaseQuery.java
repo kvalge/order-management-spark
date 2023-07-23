@@ -25,8 +25,35 @@ public class DatabaseQuery {
         }
     }
 
+    public List<Object> getAll(String table) {
+        try {
+            Statement statement = configuration.connect().createStatement();
+            statement.executeQuery("SELECT * FROM " + table);
+
+            ResultSet results = statement.getResultSet();
+
+            List<Object> records = new ArrayList<>();
+
+            int cols = results.getMetaData().getColumnCount();
+            while (results.next()) {
+                List<Object> recordsList = new LinkedList<>();
+
+                for (int i = 0; i < cols; i++) {
+                    recordsList.add(results.getObject(i + 1));
+                }
+                records.add(recordsList);
+            }
+            return records;
+
+        } catch (SQLException e) {
+            System.out.println(QUERY_FAILED + e.getMessage());
+            e.getStackTrace();
+        }
+        return null;
+    }
+
     @SuppressWarnings("unchecked")
-    public <T> List<T> getAll(String table) {
+/*    public <T> List<T> getAll(String table) {
         try {
             Statement statement = configuration.connect().createStatement();
             statement.executeQuery("SELECT * FROM " + table);
@@ -51,7 +78,7 @@ public class DatabaseQuery {
             e.getStackTrace();
         }
         return null;
-    }
+    }*/
 
     public void delete(String table, Long id) {
         try {
