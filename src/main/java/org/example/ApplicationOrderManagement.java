@@ -25,7 +25,7 @@ public class ApplicationOrderManagement {
         }, new HandlebarsTemplateEngine());
 
         get("/customer", (request, response) -> {
-            return new ModelAndView(null, "customer.hbs");
+            return new ModelAndView(null, "customer/customer.hbs");
         }, new HandlebarsTemplateEngine());
 
         get("/product", productController::getAll);

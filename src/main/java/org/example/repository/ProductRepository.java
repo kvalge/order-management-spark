@@ -20,13 +20,9 @@ public class ProductRepository {
         List<Object> queryAll = databaseQuery.getAll(ProductModel.TABLE_NAME);
 
         List<ProductModel> productModelList = new ArrayList<>();
+
         for (Object object : queryAll) {
-            String[] objectSplit = object.toString().split(",");
-            ProductModel productModel = new ProductModel();
-            productModel.setId(Long.valueOf(objectSplit[0].substring(1)));
-            productModel.setName(objectSplit[1]);
-            productModel.setSku_code(objectSplit[2]);
-            productModel.setPrice(objectSplit[3].substring(0,6));
+            ProductModel productModel = getProductModel(object);
             productModelList.add(productModel);
         }
         return productModelList;
@@ -36,14 +32,7 @@ public class ProductRepository {
         Long id = parseLong(request.params(":id"));
         Object object = databaseQuery.getById(ProductModel.TABLE_NAME, id);
 
-        String[] objectSplit = object.toString().split(",");
-        ProductModel productModel = new ProductModel();
-        productModel.setId(Long.valueOf(objectSplit[0].substring(1)));
-        productModel.setName(objectSplit[1]);
-        productModel.setSku_code(objectSplit[2]);
-        productModel.setPrice(objectSplit[3].substring(0,6));
-
-        return productModel;
+        return getProductModel(object);
     }
 
     public void update(ProductModel productModel, Long id) {
@@ -62,5 +51,17 @@ public class ProductRepository {
         map.put("price", product.getPrice());
 
         return map;
+    }
+
+    private static ProductModel getProductModel(Object object) {
+        String[] objectSplit = object.toString().split(",");
+
+        ProductModel productModel = new ProductModel();
+        productModel.setId(Long.valueOf(objectSplit[0].substring(1)));
+        productModel.setName(objectSplit[1]);
+        productModel.setSku_code(objectSplit[2]);
+        productModel.setPrice(objectSplit[3].substring(0, 6));
+
+        return productModel;
     }
 }

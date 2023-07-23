@@ -23,6 +23,7 @@ public class ProductMapper {
 
     public List<ProductViewModel> toRequestList(List<ProductModel> productModels) {
         List<ProductViewModel> productViewModels = new ArrayList<>();
+
         for (ProductModel productModel : productModels) {
             ProductViewModel productViewModel = new ProductViewModel();
             productViewModel.setId(productModel.getId());
@@ -31,7 +32,6 @@ public class ProductMapper {
             productViewModel.setPrice(productModel.getPrice());
             productViewModels.add(productViewModel);
         }
-
         return productViewModels;
     }
 
