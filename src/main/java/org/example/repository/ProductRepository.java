@@ -2,8 +2,11 @@ package org.example.repository;
 
 import org.example.database.DatabaseQuery;
 import org.example.model.ProductModel;
+import spark.Request;
 
 import java.util.*;
+
+import static java.lang.Long.parseLong;
 
 public class ProductRepository {
 
@@ -27,6 +30,24 @@ public class ProductRepository {
             productModelList.add(productModel);
         }
         return productModelList;
+    }
+
+    public ProductModel getById(Request request) {
+        Long id = parseLong(request.params(":id"));
+        Object object = databaseQuery.getById(ProductModel.TABLE_NAME, id);
+
+        String[] objectSplit = object.toString().split(",");
+        ProductModel productModel = new ProductModel();
+        productModel.setId(Long.valueOf(objectSplit[0].substring(1)));
+        productModel.setName(objectSplit[1]);
+        productModel.setSku_code(objectSplit[2]);
+        productModel.setPrice(objectSplit[3].substring(0,6));
+
+        return productModel;
+    }
+
+    public void update(ProductModel productModel, Long id) {
+        databaseQuery.update(ProductModel.TABLE_NAME, createProductMap(productModel), id);
     }
 
     public void delete(Long id) {

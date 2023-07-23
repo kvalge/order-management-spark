@@ -29,10 +29,10 @@ public class ApplicationOrderManagement {
         }, new HandlebarsTemplateEngine());
 
         get("/product", productController::getAll);
-
+        get("/product/:id", productController::edit);
         post("/customer", customerController::insert);
-
         post("/product", productController::insert);
+        post("/product/:id/update", productController::update);
         post("/product/:id/delete", productController::delete);
     }
 }

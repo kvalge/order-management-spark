@@ -30,9 +30,9 @@
 </nav>
 
 <div class="container-sm" style="text-align: center">
-    <h2 style="margin: 30px">New Product</h2>
+    <h2 style="margin: 30px">Update Product</h2>
     <div class="row justify-content-center">
-        <form action="/product" method="post">
+        <form action="/product/{{product.id}}/update" method="post">
             <table id="product">
                 <tr>
                     <td>Name</td>
@@ -40,47 +40,19 @@
                 </tr>
                 <tr>
                     <td><label>
-                        <input type="text" name="name" placeholder="Name" value="{{this.name}}">
+                        <input type="text" name="name" placeholder="{{product.name}}" value="{{this.name}}">
                     </label></td>
                     <td><label>
-                        <input type="text" name="price" placeholder="Price" value="{{this.price}}">
+                        <input type="text" name="price" placeholder="{{product.price}}" value="{{this.price}}">
                     </label></td>
                 </tr>
             </table>
             <div>
-                <button type="submit" value="Submit" class="btn btn-primary" style="margin: 20px">Add New</button>
+                <button type="submit" value="Submit" class="btn btn-primary" style="margin: 20px">Update</button>
             </div>
             <hr>
         </form>
     </div>
-    <h2 style="margin: 40px">List of All Products</h2>
-</div>
-<div>
-    <table class="table table-sm" style="text-align: center">
-        <thead class="thead-dark" style="height: 50px">
-        <tr>
-            <th>Product Name</th>
-            <th>Price</th>
-            <th>Edit</th>
-        </tr>
-        </thead>
-        {{#each product}}
-            <tr>
-                <td style="vertical-align:middle">{{this.name}}</td>
-                <td style="vertical-align:middle">{{this.price}}</td>
-                <td>
-                    <form >
-                        <button type="button" onclick="location.href='/product/{{this.id}}';" class="btn btn-warning" style="margin-bottom: 5px; padding: 5px">Update</button>
-                    </form>
-                    <form action="/product/{{this.id}}/delete" method="post">
-                        <button type="submit" class="btn btn-danger" style="padding: 7px">Delete</button>
-                    </form>
-                </td>
-            </tr>
-        {{/each}}
-        <tr>
-    </table>
-    <hr>
 </div>
 </body>
 </html>

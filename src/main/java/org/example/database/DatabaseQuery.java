@@ -52,38 +52,43 @@ public class DatabaseQuery {
         return null;
     }
 
-    @SuppressWarnings("unchecked")
-/*    public <T> List<T> getAll(String table) {
+    public Object getById(String table, Long id) {
         try {
             Statement statement = configuration.connect().createStatement();
-            statement.executeQuery("SELECT * FROM " + table);
+            statement.executeQuery("SELECT * FROM " + table + " WHERE id = " + id);
 
             ResultSet results = statement.getResultSet();
 
-            List<T> records = new ArrayList<>();
-
             int cols = results.getMetaData().getColumnCount();
+            List<Object> recordsList = new LinkedList<>();
             while (results.next()) {
-                List<T> recordsList = new LinkedList<>();
-
                 for (int i = 0; i < cols; i++) {
-                    recordsList.add((T) (results.getObject(i + 1)));
+                    recordsList.add(results.getObject(i + 1));
                 }
-                records.add((T) recordsList);
             }
-            return records;
+            return recordsList;
 
         } catch (SQLException e) {
             System.out.println(QUERY_FAILED + e.getMessage());
             e.getStackTrace();
         }
         return null;
-    }*/
+    }
 
     public void delete(String table, Long id) {
         try {
             Statement statement = configuration.connect().createStatement();
             statement.execute("DELETE FROM " + table + " WHERE id = " + id);
+        } catch (SQLException e) {
+            System.out.println(QUERY_FAILED + e.getMessage());
+            e.getStackTrace();
+        }
+    }
+
+    public void update(String table, Map<String, Object> map, Long id) {
+        try {
+            Statement statement = configuration.connect().createStatement();
+            statement.executeUpdate(updateQuery(table, map, id));
         } catch (SQLException e) {
             System.out.println(QUERY_FAILED + e.getMessage());
             e.getStackTrace();
@@ -104,5 +109,17 @@ public class DatabaseQuery {
 
         return "INSERT INTO " + table + " (id, " + mapKeys + ") " +
                 "VALUES (DEFAULT, " + valueKeys + ")";
+    }
+
+    String updateQuery(String table, Map<String, Object> map, long id) {
+        List<String> values = new ArrayList<>();
+
+        map.forEach((k, v) -> {
+            values.add("'" + v.toString() + "'");
+        });
+
+        String valueKeys = join(", ", values);
+
+        return "UPDATE " + table + " SET " + valueKeys + "WHERE id = " + id;
     }
 }
