@@ -6,10 +6,11 @@ Framework: Spark.
 
 Database: PostgresSql.  
 Database migration tool: Flyway.  
+Template engine: Handlebars.  
 Logging API: SLF4J.  
 
 Used IDE: IntelliJ IDEA 2023.2 EAP.  
 
 ## Completed functionalities  
 Insert customer data to the database.  
-Insert, display and delete products.  
+Insert, display, update and delete products.  
