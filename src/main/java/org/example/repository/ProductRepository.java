@@ -3,9 +3,7 @@ package org.example.repository;
 import org.example.database.DatabaseQuery;
 import org.example.model.ProductModel;
 
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class ProductRepository {
 
@@ -16,7 +14,20 @@ public class ProductRepository {
     }
 
     public List<ProductModel> getAll() {
-        return databaseQuery.getAll(ProductModel.TABLE_NAME);
+        List<Object> queryAll = databaseQuery.getAll(ProductModel.TABLE_NAME);
+
+        List<ProductModel> productModelList = new ArrayList<>();
+        for (Object object : queryAll) {
+            System.out.println(object);
+            String[] objectSplit = object.toString().split(",");
+            ProductModel productModel = new ProductModel();
+            productModel.setId(Long.valueOf(objectSplit[0].substring(1)));
+            productModel.setName(objectSplit[1]);
+            productModel.setSku_code(objectSplit[2]);
+            productModel.setPrice(objectSplit[3].substring(0,6));
+            productModelList.add(productModel);
+        }
+        return productModelList;
     }
 
     public void delete(Long id) {

@@ -1,11 +1,10 @@
 package org.example.database;
 
-import org.example.model.ProductModel;
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -26,23 +25,27 @@ public class DatabaseQuery {
         }
     }
 
-    public List<ProductModel> getAll(String table) {
+    @SuppressWarnings("unchecked")
+    public <T> List<T> getAll(String table) {
         try {
             Statement statement = configuration.connect().createStatement();
-            statement.execute("SELECT * FROM " + table);
+            statement.executeQuery("SELECT * FROM " + table);
+
             ResultSet results = statement.getResultSet();
 
-            List<ProductModel> list = new ArrayList<>();
+            List<T> records = new ArrayList<>();
 
+            int cols = results.getMetaData().getColumnCount();
             while (results.next()) {
-                ProductModel productModel = new ProductModel();
-                productModel.setId(results.getLong("id"));
-                productModel.setName(results.getString("name"));
-                productModel.setSku_code(results.getString("sku_code"));
-                productModel.setPrice(results.getString("price"));
-                list.add(productModel);
+                List<T> recordsList = new LinkedList<>();
+
+                for (int i = 0; i < cols; i++) {
+                    recordsList.add((T) (results.getObject(i + 1)));
+                }
+                records.add((T) recordsList);
             }
-            return list;
+            return records;
+
         } catch (SQLException e) {
             System.out.println(QUERY_FAILED + e.getMessage());
             e.getStackTrace();

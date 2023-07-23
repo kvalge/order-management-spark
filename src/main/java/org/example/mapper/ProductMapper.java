@@ -23,14 +23,13 @@ public class ProductMapper {
 
     public List<ProductViewModel> toRequestList(List<ProductModel> productModels) {
         List<ProductViewModel> productViewModels = new ArrayList<>();
-
-        for (ProductModel productModel : productModels) {
-            ProductViewModel productViewModel = new ProductViewModel();
-            productViewModel.setId(productModel.getId());
-            productViewModel.setName(productModel.getName());
-            productViewModel.setSku_code(productModel.getSku_code());
-            productViewModel.setPrice(productModel.getPrice());
-            productViewModels.add(productViewModel);
+            for (ProductModel productModel : productModels) {
+                ProductViewModel productViewModel = new ProductViewModel();
+                productViewModel.setId(productModel.getId());
+                productViewModel.setName(productModel.getName());
+                productViewModel.setSku_code(productModel.getSku_code());
+                productViewModel.setPrice(productModel.getPrice());
+                productViewModels.add(productViewModel);
         }
 
         return productViewModels;
