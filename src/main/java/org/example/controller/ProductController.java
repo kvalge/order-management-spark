@@ -1,6 +1,5 @@
 package org.example.controller;
 
-import org.example.model.ProductModel;
 import org.example.model.ProductViewModel;
 import org.example.service.ProductService;
 import spark.Request;
@@ -12,7 +11,7 @@ import java.util.Map;
 
 import static java.lang.Long.parseLong;
 
-public class ProductController extends Controller{
+public class ProductController extends Controller {
 
     ProductService productService = new ProductService();
 
@@ -31,20 +30,20 @@ public class ProductController extends Controller{
         return render("product.hbs", model);
     }
 
-    public String edit(Request request, Response response){
-        ProductModel product = productService.getById(request);
+    public String edit(Request request, Response response) {
+        ProductViewModel viewModel = productService.getById(request);
 
         Map<String, Object> model = new HashMap<>();
 
-        model.put("product", product);
+        model.put("product", viewModel);
 
         return render("update.hbs", model);
     }
 
-    public String update(Request request, Response response){
+    public String update(Request request, Response response) {
         productService.update(request);
 
-        return redirect(response, "/product.hbs");
+        return redirect(response, "/product");
     }
 
     public String delete(Request request, Response response) {

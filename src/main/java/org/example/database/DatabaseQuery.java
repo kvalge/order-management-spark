@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 import static java.lang.String.join;
+import static java.util.stream.Collectors.joining;
 import static org.example.constants.Constants.QUERY_FAILED;
 
 public class DatabaseQuery {
@@ -36,12 +37,12 @@ public class DatabaseQuery {
 
             int cols = results.getMetaData().getColumnCount();
             while (results.next()) {
-                List<Object> recordsList = new LinkedList<>();
+                List<Object> objects = new LinkedList<>();
 
                 for (int i = 0; i < cols; i++) {
-                    recordsList.add(results.getObject(i + 1));
+                    objects.add(results.getObject(i + 1));
                 }
-                records.add(recordsList);
+                records.add(objects);
             }
             return records;
 
@@ -60,13 +61,13 @@ public class DatabaseQuery {
             ResultSet results = statement.getResultSet();
 
             int cols = results.getMetaData().getColumnCount();
-            List<Object> recordsList = new LinkedList<>();
+            List<Object> objects = new LinkedList<>();
             while (results.next()) {
                 for (int i = 0; i < cols; i++) {
-                    recordsList.add(results.getObject(i + 1));
+                    objects.add(results.getObject(i + 1));
                 }
             }
-            return recordsList;
+            return objects;
 
         } catch (SQLException e) {
             System.out.println(QUERY_FAILED + e.getMessage());
@@ -112,14 +113,9 @@ public class DatabaseQuery {
     }
 
     String updateQuery(String table, Map<String, Object> map, long id) {
-        List<String> values = new ArrayList<>();
+        String collect = map.entrySet().stream().map(m -> m.getKey() + " = '" + m.getValue() + "'")
+                .collect(joining(", "));
 
-        map.forEach((k, v) -> {
-            values.add("'" + v.toString() + "'");
-        });
-
-        String valueKeys = join(", ", values);
-
-        return "UPDATE " + table + " SET " + valueKeys + "WHERE id = " + id;
+        return "UPDATE " + table + " SET " + collect + " WHERE id = " + id;
     }
 }

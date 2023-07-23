@@ -27,10 +27,10 @@ public class ProductService {
         return  productMapper.toRequestList(products);
     }
 
-    public ProductModel getById(Request request) {
+    public ProductViewModel getById(Request request) {
         ProductModel product = productRepository.getById(request);
 
-        return product;
+        return productMapper.entityToRequest(product);
     }
 
     public void update(Request request) {
