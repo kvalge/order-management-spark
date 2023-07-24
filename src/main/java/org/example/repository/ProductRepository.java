@@ -12,7 +12,7 @@ import static java.lang.Long.parseLong;
 
 public class ProductRepository {
 
-    DatabaseQuery databaseQuery = new DatabaseQuery();
+    private final DatabaseQuery databaseQuery = new DatabaseQuery();
 
     public void insert(ProductModel productModel) {
         databaseQuery.insert(ProductModel.TABLE_NAME, createProductMap(productModel));

@@ -12,8 +12,8 @@ import static java.lang.Long.parseLong;
 
 public class ProductService {
 
-    ProductMapper productMapper = new ProductMapper();
-    ProductRepository productRepository = new ProductRepository();
+    private final ProductMapper productMapper = new ProductMapper();
+    private final ProductRepository productRepository = new ProductRepository();
 
     public void insert(Request request) {
         ProductModel product = productMapper.requestToEntity(request);

@@ -7,8 +7,8 @@ import spark.Request;
 
 public class CustomerService {
 
-    CustomerMapper customerMapper = new CustomerMapper();
-    CustomerRepository customerRepository = new CustomerRepository();
+    private final CustomerMapper customerMapper = new CustomerMapper();
+    private final CustomerRepository customerRepository = new CustomerRepository();
 
     public void insert(Request request) {
         CustomerModel customer = customerMapper.requestToEntity(request);

@@ -8,7 +8,7 @@ import java.util.Map;
 
 public class CustomerRepository {
 
-    DatabaseQuery databaseQuery = new DatabaseQuery();
+    private final DatabaseQuery databaseQuery = new DatabaseQuery();
 
     public void insert(CustomerModel customerModel) {
         databaseQuery.insert(CustomerModel.TABLE_NAME, createCustomerMap(customerModel));

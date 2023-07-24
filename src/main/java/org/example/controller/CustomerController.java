@@ -6,7 +6,7 @@ import spark.Response;
 
 public class CustomerController extends Controller{
 
-    CustomerService customerService = new CustomerService();
+    private final CustomerService customerService = new CustomerService();
 
     public String insert(Request request, Response response) {
         customerService.insert(request);

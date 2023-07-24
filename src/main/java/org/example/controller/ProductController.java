@@ -13,7 +13,7 @@ import static java.lang.Long.parseLong;
 
 public class ProductController extends Controller {
 
-    ProductService productService = new ProductService();
+    private final ProductService productService = new ProductService();
 
     public String insert(Request request, Response response) {
         productService.insert(request);

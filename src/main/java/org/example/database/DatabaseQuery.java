@@ -14,7 +14,7 @@ import static org.example.constants.Constants.QUERY_FAILED;
 
 public class DatabaseQuery {
 
-    Configuration configuration = new Configuration();
+    private final Configuration configuration = new Configuration();
 
     public void insert(String table, Map<String, Object> map) {
         try {
