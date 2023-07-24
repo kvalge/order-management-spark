@@ -53,10 +53,10 @@ public class DatabaseQuery {
         return null;
     }
 
-    public Object getById(String table, Long id) {
+    public Object getByAttribute(String table, String condition) {
         try {
             Statement statement = configuration.connect().createStatement();
-            statement.executeQuery("SELECT * FROM " + table + " WHERE id = " + id);
+            statement.executeQuery("SELECT * FROM " + table + condition);
 
             ResultSet results = statement.getResultSet();
 

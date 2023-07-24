@@ -24,8 +24,9 @@ public class ProductRepository {
 
     public Object getById(Request request) {
         Long id = parseLong(request.params(":id"));
+        String condition = " WHERE id = " + id;
 
-        return databaseQuery.getById(ProductModel.TABLE_NAME, id);
+        return databaseQuery.getByAttribute(ProductModel.TABLE_NAME, condition);
     }
 
     public void update(ProductModel productModel, Long id) {
