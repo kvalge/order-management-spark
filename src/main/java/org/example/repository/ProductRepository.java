@@ -10,6 +10,8 @@ import java.util.Map;
 
 import static java.lang.Long.parseLong;
 
+import static org.example.constants.Constants.WHERE_ID;
+
 public class ProductRepository {
 
     private final DatabaseQuery databaseQuery = new DatabaseQuery();
@@ -24,7 +26,7 @@ public class ProductRepository {
 
     public Object getById(Request request) {
         Long id = parseLong(request.params(":id"));
-        String condition = " WHERE id = " + id;
+        String condition = WHERE_ID + id;
 
         return databaseQuery.getByAttribute(ProductModel.TABLE_NAME, condition);
     }

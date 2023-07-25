@@ -8,6 +8,7 @@ import spark.Request;
 import java.util.List;
 
 import static org.example.constants.Constants.REQUEST_COMPLETED;
+import static org.example.constants.Constants.WHERE_EMAIL;
 
 public class CustomerValidation {
 
@@ -15,7 +16,7 @@ public class CustomerValidation {
 
     public String emailAlreadyExists(Request request) {
         String email = request.queryParams("email");
-        String condition = " WHERE email = '" + email + "'";
+        String condition = WHERE_EMAIL + email + "'";
 
         List<Object> queryByEmail = databaseQuery.getByAttribute(CustomerModel.TABLE_NAME, condition);
 
