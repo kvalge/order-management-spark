@@ -53,7 +53,8 @@ public class DatabaseQuery {
         return null;
     }
 
-    public Object getByAttribute(String table, String condition) {
+    @SuppressWarnings("unchecked")
+    public <T> List<T> getByAttribute(String table, String condition) {
         try {
             Statement statement = configuration.connect().createStatement();
             statement.executeQuery("SELECT * FROM " + table + condition);
@@ -61,13 +62,13 @@ public class DatabaseQuery {
             ResultSet results = statement.getResultSet();
 
             int cols = results.getMetaData().getColumnCount();
-            List<Object> objects = new LinkedList<>();
+            List<T> records = new ArrayList<>();
             while (results.next()) {
                 for (int i = 0; i < cols; i++) {
-                    objects.add(results.getObject(i + 1));
+                    records.add((T) results.getObject(i + 1));
                 }
             }
-            return objects;
+            return records;
 
         } catch (SQLException e) {
             System.out.println(QUERY_FAILED + e.getMessage());
