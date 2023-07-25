@@ -2,6 +2,7 @@ package org.example.validation;
 
 import org.example.database.DatabaseQuery;
 import org.example.exceptions.DataExistsException;
+import org.example.exceptions.DataNotInsertedException;
 import org.example.model.CustomerModel;
 import spark.Request;
 
@@ -14,6 +15,19 @@ public class CustomerValidation {
 
     private final DatabaseQuery databaseQuery = new DatabaseQuery();
 
+    public String dataNotInserted(Request request) {
+        String name = request.queryParams("full-name");
+        String email = request.queryParams("email");
+        String telephone = request.queryParams("telephone");
+
+        if (name.isEmpty() || email.isEmpty() || telephone.isEmpty()) {
+            String message = "Please insert all requested data!";
+            throw new DataNotInsertedException(message);
+        } else {
+            return REQUEST_COMPLETED;
+        }
+    }
+
     public String emailAlreadyExists(Request request) {
         String email = request.queryParams("email");
         String condition = WHERE_EMAIL + email + "'";
@@ -24,7 +38,6 @@ public class CustomerValidation {
             return REQUEST_COMPLETED;
         } else {
             String message = email + " already exists!";
-            System.out.println(message);
             throw new DataExistsException(message);
         }
     }

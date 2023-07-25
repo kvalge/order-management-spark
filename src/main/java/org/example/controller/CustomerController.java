@@ -12,6 +12,7 @@ public class CustomerController extends Controller {
     private final CustomerValidation customerValidation = new CustomerValidation();
 
     public String insert(Request request, Response response) {
+        customerValidation.dataNotInserted(request);
         customerValidation.emailAlreadyExists(request);
 
         customerService.insert(request);
