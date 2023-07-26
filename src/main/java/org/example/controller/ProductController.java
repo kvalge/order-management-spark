@@ -1,7 +1,10 @@
 package org.example.controller;
 
+import org.example.exceptions.DataExistsException;
+import org.example.exceptions.DataNotInsertedException;
 import org.example.model.ProductViewModel;
 import org.example.service.ProductService;
+import org.example.validation.ProductValidation;
 import spark.Request;
 import spark.Response;
 
@@ -14,11 +17,26 @@ import static java.lang.Long.parseLong;
 public class ProductController extends Controller {
 
     private final ProductService productService = new ProductService();
+    private final ProductValidation productValidation = new ProductValidation();
 
-    public String insert(Request request, Response response) {
-        productService.insert(request);
+    /**
+     * Checks whether the inserted product data is complete and not includes the product name already in use,
+     * otherwise inserts the product data to the database. Returns respective messages.
+     */
+    public String insert(Request request, @SuppressWarnings("unused") Response response) {
+        Map<String, Object> model = new HashMap<>();
 
-        return redirect(response, "/home");
+        try {
+            productValidation.dataNotInserted(request);
+            productValidation.nameAlreadyExists(request);
+            productService.insert(request);
+            model.put("message", "Product data is saved!");
+        } catch (DataNotInsertedException | DataExistsException e) {
+            String message = e.getMessage();
+            model.put("message", message);
+            return render("product/product.hbs", model);
+        }
+        return render("home.hbs", model);
     }
 
     public String getAll(@SuppressWarnings("unused") Request request, @SuppressWarnings("unused") Response response) {

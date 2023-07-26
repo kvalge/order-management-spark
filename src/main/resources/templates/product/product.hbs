@@ -31,6 +31,9 @@
 
 <div class="container-sm" style="text-align: center">
     <h2 style="margin: 30px">New Product</h2>
+    {{#if message}}
+        <h4 style="font-weight: bold; color: #ff310f; margin: 10px">{{message}}</h4>
+    {{/if}}
     <div class="row justify-content-center">
         <form action="/product" method="post">
             <table id="product">
@@ -69,8 +72,10 @@
                 <td style="vertical-align:middle">{{this.name}}</td>
                 <td style="vertical-align:middle">{{this.price}}</td>
                 <td>
-                    <form >
-                        <button type="button" onclick="location.href='/product/{{this.id}}';" class="btn btn-warning" style="margin-bottom: 5px; padding: 5px">Update</button>
+                    <form>
+                        <button type="button" onclick="location.href='/product/{{this.id}}';" class="btn btn-warning"
+                                style="margin-bottom: 5px; padding: 5px">Update
+                        </button>
                     </form>
                     <form action="/product/{{this.id}}/delete" method="post">
                         <button type="submit" class="btn btn-danger" style="padding: 7px">Delete</button>
