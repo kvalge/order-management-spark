@@ -15,6 +15,9 @@ public class CustomerValidation {
 
     private final DatabaseQuery databaseQuery = new DatabaseQuery();
 
+    /**
+     * Validates whether user input data is complete.
+     */
     public String dataNotInserted(Request request) {
         String name = request.queryParams("full-name");
         String email = request.queryParams("email");
@@ -28,6 +31,9 @@ public class CustomerValidation {
         }
     }
 
+    /**
+     * Validates whether email inserted by user is taken or free.
+     */
     public String emailAlreadyExists(Request request) {
         String email = request.queryParams("email");
         String condition = WHERE_EMAIL + email + "'";

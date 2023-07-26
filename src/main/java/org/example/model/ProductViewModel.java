@@ -1,5 +1,8 @@
 package org.example.model;
 
+/**
+ * The model for template.
+ */
 public class ProductViewModel {
 
     private Long id;

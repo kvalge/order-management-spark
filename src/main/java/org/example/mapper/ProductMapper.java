@@ -10,6 +10,9 @@ import java.util.UUID;
 
 public class ProductMapper {
 
+    /**
+     * Converts the Request type (returned from the template form) to the ProductModel attributes.
+     */
     public ProductModel requestToEntity(Request request) {
         ProductModel product = new ProductModel();
 
@@ -21,10 +24,16 @@ public class ProductMapper {
         return product;
     }
 
+    /**
+     * Converts the Object type to the ProductViewModel type.
+     */
     public ProductViewModel entityToRequest(Object productObject) {
         return getProductViewModel(productObject);
     }
 
+    /**
+     * Converts the Object List (returned from the database) to the ProductViewModel list.
+     */
     public List<ProductViewModel> toRequestList(List<Object> productObjectList) {
         List<ProductViewModel> productViewModels = new ArrayList<>();
 
@@ -35,6 +44,10 @@ public class ProductMapper {
         return productViewModels;
     }
 
+    /**
+     * Converts the Object type (returned from database) to
+     * the ProductViewModel attributes.
+     */
     private static ProductViewModel getProductViewModel(Object object) {
         String[] objectSplit = object.toString().split(",");
 

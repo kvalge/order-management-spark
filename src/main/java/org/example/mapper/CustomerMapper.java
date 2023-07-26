@@ -7,6 +7,9 @@ import java.util.UUID;
 
 public class CustomerMapper {
 
+    /**
+     * Converts the Request type (returned from the template form) to the CustomerModel attributes.
+     */
     public CustomerModel requestToEntity(Request request) {
         CustomerModel customer = new CustomerModel();
 

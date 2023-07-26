@@ -15,24 +15,38 @@ public class ProductService {
     private final ProductMapper productMapper = new ProductMapper();
     private final ProductRepository productRepository = new ProductRepository();
 
+    /**
+     * Converts Request type to ProductModel type in Mapper class for returning it to Repository class.
+     */
     public void insert(Request request) {
         ProductModel product = productMapper.requestToEntity(request);
 
         productRepository.insert(product);
     }
 
+    /**
+     * Converts Object type list returned from database via Repository class to ProductViewModel type list
+     * in Mapper class.
+     */
     public List<ProductViewModel> getAll() {
         List<Object> productObjecList = productRepository.getAll();
 
         return productMapper.toRequestList(productObjecList);
     }
 
+    /**
+     * Converts Object type returned by id from the database via Repository class to ProductViewModel type
+     * in Mapper class.
+     */
     public ProductViewModel getById(Request request) {
         Object productObject = productRepository.getById(request);
 
         return productMapper.entityToRequest(productObject);
     }
 
+    /**
+     * Converts Request type to ProductModel type in Mapper class for returning it to Repository class.
+     */
     public void update(Request request) {
         ProductModel product = productMapper.requestToEntity(request);
         Long id = parseLong(request.params(":id"));

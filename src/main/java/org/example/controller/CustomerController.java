@@ -13,9 +13,12 @@ import java.util.Map;
 public class CustomerController extends Controller {
 
     private final CustomerService customerService = new CustomerService();
-
     private final CustomerValidation customerValidation = new CustomerValidation();
 
+    /**
+     * Checks whether the user data input is complete and not includes email already in use, otherwise
+     * inserts user's data to the database. Returns respective messages.
+     */
     public String insert(Request request, @SuppressWarnings("unused") Response response) {
         Map<String, Object> model = new HashMap<>();
 
