@@ -1,6 +1,7 @@
 package org.example.controller;
 
 import org.example.exceptions.DataExistsException;
+import org.example.exceptions.DataNotExistsException;
 import org.example.exceptions.DataNotInsertedException;
 import org.example.model.ProductViewModel;
 import org.example.service.ProductService;
@@ -39,10 +40,21 @@ public class ProductController extends Controller {
         return render("home.hbs", model);
     }
 
+    /**
+     * Checks whether there are products in the database before the request to return the list of all products.
+     */
     public String getAll(@SuppressWarnings("unused") Request request, @SuppressWarnings("unused") Response response) {
-        List<ProductViewModel> viewModelList = productService.getAll();
-
         Map<String, Object> model = new HashMap<>();
+        List<ProductViewModel> viewModelList;
+
+        try {
+            productValidation.dataNotExists();
+            viewModelList = productService.getAll();
+        } catch (DataNotExistsException e) {
+            String message = e.getMessage();
+            model.put("message", message);
+            return render("product/product.hbs", model);
+        }
         model.put("product", viewModelList);
 
         return render("product/product.hbs", model);

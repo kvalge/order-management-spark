@@ -2,6 +2,7 @@ package org.example.validation;
 
 import org.example.database.DatabaseQuery;
 import org.example.exceptions.DataExistsException;
+import org.example.exceptions.DataNotExistsException;
 import org.example.exceptions.DataNotInsertedException;
 import org.example.model.ProductModel;
 import spark.Request;
@@ -44,6 +45,20 @@ public class ProductValidation {
         } else {
             String message = name + " already exists!";
             throw new DataExistsException(message);
+        }
+    }
+
+    /**
+     * Validates whether there are products in the database to return.
+     */
+    public String dataNotExists() {
+        List<Object> queryAll = databaseQuery.getAll(ProductModel.TABLE_NAME);
+
+        if (queryAll.isEmpty()) {
+            String message = "No products in the database!";
+            throw new DataNotExistsException(message);
+        } else {
+            return REQUEST_COMPLETED;
         }
     }
 }
