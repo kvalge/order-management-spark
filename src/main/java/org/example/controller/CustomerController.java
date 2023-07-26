@@ -32,6 +32,6 @@ public class CustomerController extends Controller {
             model.put("message", message);
             return render("customer/customer.hbs", model);
         }
-        return render("home.hbs", model);
+        return render("order/order.hbs", model);
     }
 }
