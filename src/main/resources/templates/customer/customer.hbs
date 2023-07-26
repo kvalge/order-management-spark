@@ -30,6 +30,9 @@
 </nav>
 <div class="container-sm" style="text-align: center">
     <h1 style="margin: 30px">Customer Registration</h1>
+    {{#if message}}
+        <h4 style="font-weight: bold; color: #ff310f; margin: 10px">{{message}}</h4>
+    {{/if}}
     <div class="row justify-content-center">
         <form action="/customer" method="post">
             <table id="customer">
