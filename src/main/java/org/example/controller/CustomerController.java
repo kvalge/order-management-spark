@@ -2,7 +2,6 @@ package org.example.controller;
 
 import org.example.exceptions.DataExistsException;
 import org.example.exceptions.DataNotInsertedException;
-import org.example.model.ProductViewModel;
 import org.example.service.CustomerService;
 import org.example.service.ProductService;
 import org.example.validation.CustomerValidation;
@@ -10,7 +9,6 @@ import spark.Request;
 import spark.Response;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class CustomerController extends Controller {
@@ -30,14 +28,11 @@ public class CustomerController extends Controller {
             customerValidation.dataNotInserted(request);
             customerValidation.emailAlreadyExists(request);
             customerService.insert(request);
-            List<ProductViewModel> viewModelList = productService.getAll();
-            model.put("product", viewModelList);
-            model.put("message", "Customer data is saved!");
         } catch (DataNotInsertedException | DataExistsException e) {
             String message = e.getMessage();
             model.put("message", message);
             return render("customer/customer.hbs", model);
         }
-        return render("order/order.hbs", model);
+        return redirectWith(response,"/order", model);
     }
 }

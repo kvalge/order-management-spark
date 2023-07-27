@@ -31,6 +31,7 @@ public class ApplicationOrderManagement {
         }, new HandlebarsTemplateEngine());
 
         get("/product", productController::getAll);
+        get("/order", orderController::getProductsList);
         get("/product/:id", productController::edit);
         post("/customer", customerController::insert);
         post("/product", productController::insert);

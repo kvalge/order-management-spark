@@ -37,15 +37,22 @@ public class ProductController extends Controller {
             model.put("message", message);
             return render("product/product.hbs", model);
         }
+
         return render("home.hbs", model);
     }
 
-    /**
-     * Checks whether there are products in the database before the request to return the list of all products.
-     */
     public String getAll(@SuppressWarnings("unused") Request request, @SuppressWarnings("unused") Response response) {
-        Map<String, Object> model = new HashMap<>();
+        Map<String, Object> model = getAllAndValidate(request, response);
+
+        return render("product/product.hbs", model);
+    }
+
+    /**
+     * Checks whether there are products in the database to return.
+     */
+    public Map<String, Object> getAllAndValidate(@SuppressWarnings("unused") Request request, @SuppressWarnings("unused") Response response) {
         List<ProductViewModel> viewModelList;
+        Map<String, Object> model = new HashMap<>();
 
         try {
             productValidation.dataNotExists();
@@ -53,11 +60,10 @@ public class ProductController extends Controller {
         } catch (DataNotExistsException e) {
             String message = e.getMessage();
             model.put("message", message);
-            return render("product/product.hbs", model);
+            return model;
         }
         model.put("product", viewModelList);
-
-        return render("product/product.hbs", model);
+        return model;
     }
 
     public String edit(Request request, @SuppressWarnings("unused") Response response) {
