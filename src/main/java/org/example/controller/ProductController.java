@@ -79,7 +79,18 @@ public class ProductController extends Controller {
     }
 
     public String update(Request request, Response response) {
-        productService.update(request);
+        Map<String, Object> model = new HashMap<>();
+
+        try {
+            productValidation.dataNotInserted(request);
+            productValidation.nameAlreadyExists(request);
+            productService.update(request);
+            model.put("message", "Product data is updated!");
+        } catch (DataNotInsertedException | DataExistsException e) {
+            String message = e.getMessage();
+            model.put("message", message);
+            return render("product/product.hbs", model);
+        }
 
         return redirect(response, "/product");
     }
