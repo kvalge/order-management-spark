@@ -21,6 +21,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/product">Products</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/order">Orders</a>
+                </li>
             </ul>
         </div>
     </div>
@@ -38,7 +41,7 @@
                     <tr>
                         <th>Product Name</th>
                         <th>Price</th>
-                        <th>Order</th>
+                        <th>To Order</th>
                     </tr>
                     </thead>
                     {{#each product}}
@@ -49,7 +52,7 @@
                                 <form>
                                     <button type="button" onclick="location.href='/product/{{this.id}}';"
                                             class="btn btn-warning"
-                                            style="margin-bottom: 5px; padding: 5px">Add to Order
+                                            style="margin-bottom: 5px; padding: 5px">Add to Cart
                                     </button>
                                 </form>
                             </td>
