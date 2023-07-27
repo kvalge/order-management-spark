@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+          integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <title>Customer</title>
+</head>
+<body style="margin: 0 auto; width: 960px; background-color: ghostwhite;">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" href="/home">Home Page</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="/customer">Register</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/product">Products</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/order">Orders</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container-sm" style="text-align: center">
+    <h2 style="margin: 30px">Order Lines</h2>
+    <div class="row justify-content-center">
+
+        <div>
+            <table class="table table-sm" style="text-align: center">
+                <thead class="thead-dark" style="height: 50px">
+                <tr>
+                    <th>Product Name</th>
+                    <th>Price</th>
+                </tr>
+                </thead>
+                <tr>
+                    <td style="vertical-align:middle">{{product.name}}</td>
+                    <td style="vertical-align:middle">{{product.price}}</td>
+                </tr>
+                <tr>
+            </table>
+            <hr>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>

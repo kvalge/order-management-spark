@@ -1,6 +1,7 @@
 package org.example;
 
 import org.example.controller.OrderController;
+import org.example.controller.OrderLineController;
 import org.example.controller.ProductController;
 import org.example.database.DatabaseMigrator;
 import org.example.controller.CustomerController;
@@ -21,6 +22,7 @@ public class ApplicationOrderManagement {
         CustomerController customerController = new CustomerController();
         ProductController productController = new ProductController();
         OrderController orderController = new OrderController();
+        OrderLineController orderLineController = new OrderLineController();
 
         get("/home", (request, response) -> {
             return new ModelAndView(null, "home.hbs");
@@ -37,5 +39,6 @@ public class ApplicationOrderManagement {
         post("/product", productController::insert);
         post("/product/:id/update", productController::update);
         post("/product/:id/delete", productController::delete);
+        post("/product/:id/order", orderLineController::orderLines);
     }
 }

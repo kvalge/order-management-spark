@@ -49,8 +49,8 @@
                             <td style="vertical-align:middle">{{this.name}}</td>
                             <td style="vertical-align:middle">{{this.price}}</td>
                             <td>
-                                <form>
-                                    <button type="button" onclick="location.href='/product/{{this.id}}';"
+                                <form action="/product/{{this.id}}/order" method="post">
+                                    <button type="submit"
                                             class="btn btn-warning"
                                             style="margin-bottom: 5px; padding: 5px">Add to Cart
                                     </button>
