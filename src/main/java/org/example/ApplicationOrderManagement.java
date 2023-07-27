@@ -1,5 +1,6 @@
 package org.example;
 
+import org.example.controller.OrderController;
 import org.example.controller.ProductController;
 import org.example.database.DatabaseMigrator;
 import org.example.controller.CustomerController;
@@ -19,6 +20,7 @@ public class ApplicationOrderManagement {
 
         CustomerController customerController = new CustomerController();
         ProductController productController = new ProductController();
+        OrderController orderController = new OrderController();
 
         get("/home", (request, response) -> {
             return new ModelAndView(null, "home.hbs");
