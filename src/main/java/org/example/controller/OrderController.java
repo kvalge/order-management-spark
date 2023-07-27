@@ -9,6 +9,9 @@ public class OrderController extends Controller {
 
     private final ProductController productController = new ProductController();
 
+    /**
+     * Returns the list of products to the order page.
+     */
     public Object getProductsList(@SuppressWarnings("unused") Request request, @SuppressWarnings("unused") Response response) {
         Map<String, Object> model = productController.getAllAndValidate(request, response);
 

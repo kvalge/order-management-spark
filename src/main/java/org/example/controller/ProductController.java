@@ -41,6 +41,9 @@ public class ProductController extends Controller {
         return render("home.hbs", model);
     }
 
+    /**
+     * Renders product list returned from getAllAndValidate method to the product page.
+     */
     public String getAll(@SuppressWarnings("unused") Request request, @SuppressWarnings("unused") Response response) {
         Map<String, Object> model = getAllAndValidate(request, response);
 
