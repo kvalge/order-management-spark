@@ -78,6 +78,10 @@ public class ProductController extends Controller {
         return render("product/update.hbs", model);
     }
 
+    /**
+     * Checks whether the inserted product data is complete and not includes the product name already in use,
+     * before updating. Returns respective messages.
+     */
     public String update(Request request, Response response) {
         Map<String, Object> model = new HashMap<>();
 
