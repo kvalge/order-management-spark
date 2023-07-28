@@ -1,0 +1,1 @@
+ALTER TABLE customer_order ADD registration_code varchar(500);
