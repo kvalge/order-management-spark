@@ -24,17 +24,14 @@ public class ApplicationOrderManagement {
         CustomerOrderController customerOrderController = new CustomerOrderController();
         OrderLineController orderLineController = new OrderLineController();
 
-        get("/home", (request, response) -> {
-            return new ModelAndView(null, "home.hbs");
-        }, new HandlebarsTemplateEngine());
+        get("/home", (request, response) ->
+                new ModelAndView(null, "home.hbs"), new HandlebarsTemplateEngine());
 
-        get("/customer", (request, response) -> {
-            return new ModelAndView(null, "customer/customer.hbs");
-        }, new HandlebarsTemplateEngine());
+        get("/customer", (request, response) ->
+                new ModelAndView(null, "customer/customer.hbs"), new HandlebarsTemplateEngine());
 
-        get("/order", (request, response) -> {
-            return new ModelAndView(null, "order/order.hbs");
-        }, new HandlebarsTemplateEngine());
+        get("/order", (request, response) ->
+                new ModelAndView(null, "order/order.hbs"), new HandlebarsTemplateEngine());
 
         get("/product", productController::getAll);
         get("/product/:id", productController::edit);
