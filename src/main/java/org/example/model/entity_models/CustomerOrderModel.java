@@ -8,6 +8,7 @@ public class CustomerOrderModel {
     private Long id;
     private Date submissionDate;
     private Long customerId;
+    private String sku_code;
 
     public Long getId() {
         return id;
@@ -31,5 +32,13 @@ public class CustomerOrderModel {
 
     public void setCustomerId(Long customerId) {
         this.customerId = customerId;
+    }
+
+    public String getSku_code() {
+        return sku_code;
+    }
+
+    public void setSku_code(String sku_code) {
+        this.sku_code = sku_code;
     }
 }

@@ -19,6 +19,7 @@ public class CustomerOrderRepository {
 
         map.put("submission_date", orderModel.getSubmissionDate());
         map.put("customer_id", orderModel.getCustomerId());
+        map.put("sku_code", orderModel.getSku_code());
 
         return map;
     }

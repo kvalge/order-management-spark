@@ -7,4 +7,5 @@ public class Constants {
     public static final String WHERE_ID = " WHERE id = ";
     public static final String WHERE_EMAIL = " WHERE email = '";
     public static final String WHERE_NAME = " WHERE name = '";
+    public static final String WHERE_SKU_CODE = " WHERE sku_code = '";
 }
