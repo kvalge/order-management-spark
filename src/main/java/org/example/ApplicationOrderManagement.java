@@ -32,6 +32,10 @@ public class ApplicationOrderManagement {
             return new ModelAndView(null, "customer/customer.hbs");
         }, new HandlebarsTemplateEngine());
 
+        get("/order", (request, response) -> {
+            return new ModelAndView(null, "order/order.hbs");
+        }, new HandlebarsTemplateEngine());
+
         get("/product", productController::getAll);
         get("/product/:id", productController::edit);
         post("/customer", customerController::insert);
