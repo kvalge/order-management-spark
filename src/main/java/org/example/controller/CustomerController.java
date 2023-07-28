@@ -12,21 +12,20 @@ import spark.Request;
 import spark.Response;
 
 import java.text.ParseException;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
 
 public class CustomerController extends Controller {
 
     private final CustomerService customerService = new CustomerService();
     private final CustomerValidation customerValidation = new CustomerValidation();
     private final CustomerOrderService customerOrderService = new CustomerOrderService();
+    private final CustomerOrderController customerOrderController = new CustomerOrderController();
 
     /**
      * Checks whether the user data input is complete and not includes email already in use, otherwise
      * inserts user's data to the database. Returns respective messages.
-     * Creates customer order with just inserted customer id and current date.
+     * Creates customer order with just inserted Customer id.
      */
     public String insert(Request request, @SuppressWarnings("unused") Response response) throws ParseException {
         Map<String, Object> model = new HashMap<>();
@@ -44,17 +43,11 @@ public class CustomerController extends Controller {
         }
 
         CustomerViewModel viewModel = customerService.getByEmail(email);
-        Long id = viewModel.getId();
+        Long customerId = viewModel.getId();
 
-        CustomerOrderModel customerOrderModel = new CustomerOrderModel();
-        customerOrderModel.setCustomerId(id);
-        customerOrderModel.setSubmissionDate(new Date());
-        UUID uuid = UUID.randomUUID();
-        customerOrderModel.setSku_code(uuid.toString());
-        customerOrderService.insert(customerOrderModel);
+        CustomerOrderModel customerOrderModel = customerOrderController.insertCustomerOrderModel(customerId);
 
         String sku_code = customerOrderModel.getSku_code();
-
         CustomerOrderViewModel bySkuCode = customerOrderService.getBySkuCode(sku_code);
 
         model.put("message", "juhhei");

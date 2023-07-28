@@ -1,6 +1,6 @@
 package org.example;
 
-import org.example.controller.OrderController;
+import org.example.controller.CustomerOrderController;
 import org.example.controller.OrderLineController;
 import org.example.controller.ProductController;
 import org.example.database.DatabaseMigrator;
@@ -21,7 +21,7 @@ public class ApplicationOrderManagement {
 
         CustomerController customerController = new CustomerController();
         ProductController productController = new ProductController();
-        OrderController orderController = new OrderController();
+        CustomerOrderController customerOrderController = new CustomerOrderController();
         OrderLineController orderLineController = new OrderLineController();
 
         get("/home", (request, response) -> {
@@ -33,7 +33,7 @@ public class ApplicationOrderManagement {
         }, new HandlebarsTemplateEngine());
 
         get("/product", productController::getAll);
-        get("/order", orderController::getProductsList);
+        get("/order", customerOrderController::getProductsList);
         get("/product/:id", productController::edit);
         post("/customer", customerController::insert);
         post("/product", productController::insert);

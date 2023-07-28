@@ -45,7 +45,7 @@ public class ProductController extends Controller {
      * Renders product list returned from getAllAndValidate method to the product page.
      */
     public String getAll(@SuppressWarnings("unused") Request request, @SuppressWarnings("unused") Response response) {
-        Map<String, Object> model = getAllAndValidate(request, response);
+        Map<String, Object> model = getAllProductsAndValidate(request, response);
 
         return render("product/product.hbs", model);
     }
@@ -53,7 +53,7 @@ public class ProductController extends Controller {
     /**
      * Checks whether there are products in the database to return.
      */
-    public Map<String, Object> getAllAndValidate(@SuppressWarnings("unused") Request request, @SuppressWarnings("unused") Response response) {
+    public Map<String, Object> getAllProductsAndValidate(@SuppressWarnings("unused") Request request, @SuppressWarnings("unused") Response response) {
         List<ProductViewModel> viewModelList;
         Map<String, Object> model = new HashMap<>();
 
