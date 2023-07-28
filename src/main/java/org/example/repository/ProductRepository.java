@@ -1,7 +1,7 @@
 package org.example.repository;
 
 import org.example.database.DatabaseQuery;
-import org.example.model.ProductModel;
+import org.example.model.entity_models.ProductModel;
 import spark.Request;
 
 import java.util.LinkedHashMap;

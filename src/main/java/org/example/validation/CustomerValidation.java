@@ -3,7 +3,7 @@ package org.example.validation;
 import org.example.database.DatabaseQuery;
 import org.example.exceptions.DataExistsException;
 import org.example.exceptions.DataNotInsertedException;
-import org.example.model.CustomerModel;
+import org.example.model.entity_models.CustomerModel;
 import spark.Request;
 
 import java.util.List;

@@ -1,4 +1,4 @@
-package org.example.model;
+package org.example.model.view_models;
 
 /**
  * The model for template.

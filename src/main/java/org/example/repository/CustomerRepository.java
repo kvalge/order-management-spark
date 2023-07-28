@@ -1,10 +1,12 @@
 package org.example.repository;
 
 import org.example.database.DatabaseQuery;
-import org.example.model.CustomerModel;
+import org.example.model.entity_models.CustomerModel;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
+
+import static org.example.constants.Constants.WHERE_EMAIL;
 
 public class CustomerRepository {
 
@@ -23,5 +25,11 @@ public class CustomerRepository {
         map.put("telephone", customer.getTelephone());
 
         return map;
+    }
+
+    public Object getByEmail(String email) {
+        String condition = WHERE_EMAIL + email + "'";
+
+        return databaseQuery.getByAttribute(CustomerModel.TABLE_NAME, condition);
     }
 }

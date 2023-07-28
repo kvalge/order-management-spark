@@ -1,8 +1,8 @@
 package org.example.service;
 
 import org.example.mapper.ProductMapper;
-import org.example.model.ProductModel;
-import org.example.model.ProductViewModel;
+import org.example.model.entity_models.ProductModel;
+import org.example.model.view_models.ProductViewModel;
 import org.example.repository.ProductRepository;
 import spark.Request;
 

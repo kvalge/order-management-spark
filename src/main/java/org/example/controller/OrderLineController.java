@@ -1,6 +1,6 @@
 package org.example.controller;
 
-import org.example.model.ProductViewModel;
+import org.example.model.view_models.ProductViewModel;
 import org.example.service.ProductService;
 import spark.Request;
 import spark.Response;

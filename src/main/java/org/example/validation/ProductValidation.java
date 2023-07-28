@@ -4,7 +4,7 @@ import org.example.database.DatabaseQuery;
 import org.example.exceptions.DataExistsException;
 import org.example.exceptions.DataNotExistsException;
 import org.example.exceptions.DataNotInsertedException;
-import org.example.model.ProductModel;
+import org.example.model.entity_models.ProductModel;
 import spark.Request;
 
 import java.util.List;

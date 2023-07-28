@@ -1,7 +1,7 @@
 package org.example.mapper;
 
-import org.example.model.ProductModel;
-import org.example.model.ProductViewModel;
+import org.example.model.entity_models.ProductModel;
+import org.example.model.view_models.ProductViewModel;
 import spark.Request;
 
 import java.util.ArrayList;

@@ -3,7 +3,7 @@ package org.example.controller;
 import org.example.exceptions.DataExistsException;
 import org.example.exceptions.DataNotExistsException;
 import org.example.exceptions.DataNotInsertedException;
-import org.example.model.ProductViewModel;
+import org.example.model.view_models.ProductViewModel;
 import org.example.service.ProductService;
 import org.example.validation.ProductValidation;
 import spark.Request;
