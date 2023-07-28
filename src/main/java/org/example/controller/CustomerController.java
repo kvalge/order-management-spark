@@ -21,6 +21,7 @@ public class CustomerController extends Controller {
     private final CustomerValidation customerValidation = new CustomerValidation();
     private final CustomerOrderService customerOrderService = new CustomerOrderService();
     private final CustomerOrderController customerOrderController = new CustomerOrderController();
+    private final ProductController productController = new ProductController();
 
     /**
      * Checks whether the user data input is complete and not includes email already in use, otherwise
@@ -53,7 +54,9 @@ public class CustomerController extends Controller {
         model.put("message", "juhhei");
         model.put("order", bySkuCode.getId());
 
+        Map<String, Object> products = productController.getAllProductsAndValidate();
+        model.putAll(products);
+
         return render("order/order.hbs", model);
-//        return redirect(response, "/order");
     }
 }
