@@ -27,6 +27,7 @@ public class CustomerController extends Controller {
      * Checks whether the user data input is complete and not includes email already in use, otherwise
      * inserts user's data to the database. Returns respective messages.
      * Creates customer order with just inserted Customer id.
+     * Adds to the model the product list to render it to the order.hbs.
      */
     public String insert(Request request, @SuppressWarnings("unused") Response response) throws ParseException {
         Map<String, Object> model = new HashMap<>();
@@ -36,7 +37,6 @@ public class CustomerController extends Controller {
             customerValidation.dataNotInserted(request);
             customerValidation.emailAlreadyExists(request);
             customerService.insert(request);
-            model.put("email", email);
         } catch (DataNotInsertedException | DataExistsException e) {
             String message = e.getMessage();
             model.put("message", message);
@@ -49,10 +49,9 @@ public class CustomerController extends Controller {
         CustomerOrderModel customerOrderModel = customerOrderController.insertCustomerOrderModel(customerId);
 
         String sku_code = customerOrderModel.getSku_code();
-        CustomerOrderViewModel bySkuCode = customerOrderService.getBySkuCode(sku_code);
+        CustomerOrderViewModel customerOrder = customerOrderService.getBySkuCode(sku_code);
 
-        model.put("message", "juhhei");
-        model.put("order", bySkuCode.getId());
+        model.put("order", customerOrder);
 
         Map<String, Object> products = productController.getAllProductsAndValidate();
         model.putAll(products);

@@ -32,9 +32,8 @@
     <div class="d-flex justify-content-center align-items-center">
         <div class="content" style="margin: 30px;">
             <h1>Orders</h1>
-            {{#if message}}
-                <h4 style="font-weight: bold; color: limegreen; margin: 10px">{{message}}</h4>
-            {{/if}}
+            <p>Order id: {{order.id}}</p>
+            <p>Customer id: {{order.customerId}}</p>
             <div>
                 <table class="table table-sm" style="text-align: center">
                     <thead class="thead-dark" style="height: 50px">
