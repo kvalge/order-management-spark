@@ -12,7 +12,7 @@ public class OrderLineController extends Controller{
 
     private final ProductService productService = new ProductService();
 
-    public String orderLines(Request request, Response response) {
+    public String orderLines(Request request,@SuppressWarnings("unused")Response response) {
         ProductViewModel viewModel = productService.getById(request);
 
         Map<String, Object> model = new HashMap<>();
