@@ -87,7 +87,6 @@ public class ProductController extends Controller {
 
         try {
             productValidation.dataNotInserted(request);
-            productValidation.nameAlreadyExists(request);
             productService.update(request);
             model.put("message", "Product data is updated!");
         } catch (DataNotInsertedException | DataExistsException e) {
