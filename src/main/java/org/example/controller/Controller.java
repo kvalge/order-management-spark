@@ -16,9 +16,4 @@ public class Controller {
         response.redirect(path);
         return null;
     }
-
-    public String redirectWith(Response response, String path, Map<String, Object> model) {
-        response.redirect(path);
-        return null;
-    }
 }
