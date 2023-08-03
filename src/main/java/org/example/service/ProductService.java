@@ -31,7 +31,7 @@ public class ProductService {
     public List<ProductViewModel> getAll() {
         List<Object> productObjecList = productRepository.getAll();
 
-        return productMapper.toRequestList(productObjecList);
+        return productMapper.toViewModelList(productObjecList);
     }
 
     /**
@@ -41,7 +41,7 @@ public class ProductService {
     public ProductViewModel getById(Request request) {
         Object productObject = productRepository.getById(request);
 
-        return productMapper.entityToRequest(productObject);
+        return productMapper.entityToViewModel(productObject);
     }
 
     /**

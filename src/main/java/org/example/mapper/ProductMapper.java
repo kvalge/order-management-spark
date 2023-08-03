@@ -27,14 +27,14 @@ public class ProductMapper {
     /**
      * Converts the Object type to the ProductViewModel type.
      */
-    public ProductViewModel entityToRequest(Object productObject) {
+    public ProductViewModel entityToViewModel(Object productObject) {
         return getProductViewModel(productObject);
     }
 
     /**
      * Converts the Object List (returned from the database) to the ProductViewModel list.
      */
-    public List<ProductViewModel> toRequestList(List<Object> productObjectList) {
+    public List<ProductViewModel> toViewModelList(List<Object> productObjectList) {
         List<ProductViewModel> productViewModels = new ArrayList<>();
 
         for (Object object : productObjectList) {
