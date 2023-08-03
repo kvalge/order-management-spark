@@ -37,7 +37,7 @@ public class ApplicationOrderManagement {
         post("/product", productController::insert);
         post("/product/:id/update", productController::update);
         post("/product/:id/delete", productController::delete);
-        post("/product/:id/order", orderLineController::insert);
+        post("/product/:id/order/:attribute", orderLineController::insert);
         post("/order/:id", orderLineController::insert);
     }
 }
