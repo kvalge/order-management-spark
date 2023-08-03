@@ -30,26 +30,52 @@
 </nav>
 
 <div class="container-sm" style="text-align: center">
-    <h2 style="margin: 30px">Order Line</h2>
-    <p>{{order_line.id}}</p>
+    <h2 style="margin: 30px">Ordered Product</h2>
     <div class="row justify-content-center">
-        <div>
-            <table class="table table-sm" style="text-align: center">
-                <thead class="thead-dark" style="height: 50px">
-                <tr>
-                    <th>Product Name</th>
-                    <th>Price</th>
-                </tr>
-                </thead>
-                <tr>
-                    <td style="vertical-align:middle">{{product.name}}</td>
-                    <td style="vertical-align:middle">{{product.price}}</td>
-                </tr>
-                <tr>
-            </table>
-            <hr>
+        <div class="col-md-12">
+            <div>
+                <table class="table table-sm" style="text-align: center">
+                    <thead class="thead-dark" style="height: 50px">
+                    <tr>
+                        <th>Product Name</th>
+                        <th>Price</th>
+                    </tr>
+                    </thead>
+                    <tr>
+                        <td style="vertical-align:middle">{{product.name}}</td>
+                        <td style="vertical-align:middle">{{product.price}}</td>
+                    </tr>
+                </table>
+                <hr>
+            </div>
         </div>
-
+        <div class="row justify-content-center">
+            <h2 style="margin: 30px">Cart</h2>
+            <div class="col-md-12">
+                <div>
+                    <div>
+                        <table class="table table-sm" style="text-align: center">
+                            <thead class="thead-dark" style="height: 50px">
+                            <tr>
+                                <th>Order Line Id</th>
+                                <th>Order Id</th>
+                                <th>Product Id</th>
+                            </tr>
+                            </thead>
+                            {{#each order_line}}
+                                <tr>
+                                    <td style="vertical-align:middle">{{this.id}}</td>
+                                    <td style="vertical-align:middle">{{this.customerOrderId}}</td>
+                                    <td style="vertical-align:middle">{{this.productId}}</td>
+                                </tr>
+                            {{/each}}
+                            <tr>
+                        </table>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 </body>

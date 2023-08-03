@@ -38,6 +38,7 @@ public class OrderLineController extends Controller {
         model.put("product", product);
 
         List<OrderLineViewModel> orderLines = getByOrderId((Long) orderId);
+        model.put("order_line", orderLines);
 
         return render("order_line/order_line.hbs", model);
     }
