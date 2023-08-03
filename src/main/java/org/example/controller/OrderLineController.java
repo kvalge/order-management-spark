@@ -1,7 +1,7 @@
 package org.example.controller;
 
 import org.example.model.entity_models.OrderLineModel;
-import org.example.repository.OrderLineRepository;
+import org.example.service.OrderLineService;
 import spark.Request;
 import spark.Response;
 
@@ -12,7 +12,7 @@ import static java.lang.Long.parseLong;
 
 public class OrderLineController extends Controller{
 
-    private final OrderLineRepository orderLineRepository = new OrderLineRepository();
+    private final OrderLineService orderLineService = new OrderLineService();
 
     /**
      * Inserts new order line with selected product and order id.
@@ -25,7 +25,7 @@ public class OrderLineController extends Controller{
 
         orderLineModel.setCustomerOrderId((Long) orderId);
         orderLineModel.setProductId(id);
-        orderLineRepository.insert(orderLineModel);
+        orderLineService.insert(orderLineModel);
 
         Map<String, Object> model = new HashMap<>();
         model.put("order_line", orderLineModel);
