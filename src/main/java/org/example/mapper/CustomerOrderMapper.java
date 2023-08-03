@@ -10,8 +10,7 @@ import java.util.Date;
 public class CustomerOrderMapper {
 
     /**
-     * Converts the Object type (returned from database) to
-     * the CustomerOrderViewModel.
+     * Converts the Object type (returned from database) to the CustomerOrderViewModel.
      */
     public CustomerOrderViewModel entityToCustomerOrderViewModel(Object object) throws ParseException {
         String[] objectSplit = object.toString().split(",");
