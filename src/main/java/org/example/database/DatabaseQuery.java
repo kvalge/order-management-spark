@@ -77,6 +77,33 @@ public class DatabaseQuery {
         return null;
     }
 
+    public List<Object> getListByAttribute(String table, String condition) {
+        try {
+            Statement statement = configuration.connect().createStatement();
+            statement.executeQuery("SELECT * FROM " + table + condition);
+
+            ResultSet results = statement.getResultSet();
+
+            List<Object> records = new ArrayList<>();
+
+            int cols = results.getMetaData().getColumnCount();
+            while (results.next()) {
+                List<Object> objects = new LinkedList<>();
+
+                for (int i = 0; i < cols; i++) {
+                    objects.add(results.getObject(i + 1));
+                }
+                records.add(objects);
+            }
+            return records;
+
+        } catch (SQLException e) {
+            System.out.println(QUERY_FAILED + e.getMessage());
+            e.getStackTrace();
+        }
+        return null;
+    }
+
     public void delete(String table, Long id) {
         try {
             Statement statement = configuration.connect().createStatement();

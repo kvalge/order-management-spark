@@ -4,7 +4,10 @@ import org.example.database.DatabaseQuery;
 import org.example.model.entity_models.OrderLineModel;
 
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
+
+import static org.example.constants.Constants.WHERE_CUSTOMER_ORDER_ID;
 
 public class OrderLineRepository {
 
@@ -21,5 +24,11 @@ public class OrderLineRepository {
         map.put("product_id", orderLineModel.getProductId());
 
         return map;
+    }
+
+    public List<Object> getListByOrderId(Long id) {
+        String condition = WHERE_CUSTOMER_ORDER_ID + id;
+
+        return databaseQuery.getListByAttribute(OrderLineModel.TABLE_NAME, condition);
     }
 }
