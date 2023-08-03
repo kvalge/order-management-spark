@@ -19,15 +19,14 @@ public class CustomerController extends Controller {
 
     private final CustomerService customerService = new CustomerService();
     private final CustomerValidation customerValidation = new CustomerValidation();
-    private final CustomerOrderService customerOrderService = new CustomerOrderService();
     private final CustomerOrderController customerOrderController = new CustomerOrderController();
-    private final ProductController productController = new ProductController();
+    private final CustomerOrderService customerOrderService = new CustomerOrderService();
 
     /**
      * Checks whether the user data input is complete and not includes email already in use, otherwise
      * inserts user's data to the database. Returns respective messages.
      * Creates customer order with just inserted Customer id.
-     * Adds to the model the product list to render it to the order.hbs.
+     * Redirects to /order page with order sku code.
      */
     public String insert(Request request, @SuppressWarnings("unused") Response response) throws ParseException {
         Map<String, Object> model = new HashMap<>();
@@ -47,15 +46,10 @@ public class CustomerController extends Controller {
         Long customerId = viewModel.getId();
 
         CustomerOrderModel customerOrderModel = customerOrderController.insertCustomerOrderModel(customerId);
-
         String sku_code = customerOrderModel.getSku_code();
-        CustomerOrderViewModel customerOrder = customerOrderService.getBySkuCode(sku_code);
+        CustomerOrderViewModel orderViewModel = customerOrderService.getBySkuCode(sku_code);
+        Long id = orderViewModel.getId();
 
-        model.put("order", customerOrder);
-
-        Map<String, Object> products = productController.getAllProductsAndValidate();
-        model.putAll(products);
-
-        return render("order/order.hbs", model);
+        return redirectWithAttribute(request, response, "/order", id);
     }
 }

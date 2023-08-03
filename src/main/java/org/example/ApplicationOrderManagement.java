@@ -30,15 +30,14 @@ public class ApplicationOrderManagement {
         get("/customer", (request, response) ->
                 new ModelAndView(null, "customer/customer.hbs"), new HandlebarsTemplateEngine());
 
-        get("/order", (request, response) ->
-                new ModelAndView(null, "order/order.hbs"), new HandlebarsTemplateEngine());
-
         get("/product", productController::getAll);
         get("/product/:id", productController::edit);
+        get("/order", customerOrderController::toOrder);
         post("/customer", customerController::insert);
         post("/product", productController::insert);
         post("/product/:id/update", productController::update);
         post("/product/:id/delete", productController::delete);
-        post("/product/:id/order", orderLineController::orderLines);
+        post("/product/:id/order", orderLineController::insert);
+        post("/order/:id", orderLineController::insert);
     }
 }
