@@ -21,7 +21,9 @@ public class OrderLineController extends Controller {
     private final ProductService productService = new ProductService();
 
     /**
-     * Inserts new order line with selected product and order id.
+     * Inserts the new order line with the selected product and the order id.
+     * Inserts to the template model the just inserted new product.
+     * Inserts to the template model all ordered products of the order line by its id.
      */
     public String insert(Request request, @SuppressWarnings("unused") Response response) {
         OrderLineModel orderLineModel = new OrderLineModel();
@@ -51,6 +53,9 @@ public class OrderLineController extends Controller {
         return orderLineService.getByOrderId(orderId);
     }
 
+    /**
+     * Returns list of products completed of every order line product of a certain order.
+     */
     private List<ProductViewModel> getProductViewModels(List<OrderLineViewModel> orderLines) {
         List<ProductViewModel> productViewModels = new ArrayList<>();
 
