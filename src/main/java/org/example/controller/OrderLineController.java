@@ -8,6 +8,7 @@ import org.example.service.ProductService;
 import spark.Request;
 import spark.Response;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -39,7 +40,15 @@ public class OrderLineController extends Controller {
 
         List<OrderLineViewModel> orderLines = getByOrderId((Long) orderId);
 
-        model.put("order_line", orderLines);
+        List<ProductViewModel> productViewModels = new ArrayList<>();
+
+        for (OrderLineViewModel viewModel : orderLines) {
+            Long prodId = viewModel.getProductId();
+            ProductViewModel productViewModel = productService.getById(prodId);
+            productViewModels.add(productViewModel);
+        }
+
+        model.put("products", productViewModels);
 
         return render("order_line/order_line.hbs", model);
     }

@@ -30,7 +30,7 @@
 </nav>
 
 <div class="container-sm" style="text-align: center">
-    <h2 style="margin: 30px">Ordered Product</h2>
+    <h2 style="margin: 30px">Last Order</h2>
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div>
@@ -50,23 +50,21 @@
             </div>
         </div>
         <div class="row justify-content-center">
-            <h2 style="margin: 30px">Cart</h2>
+            <h2 style="margin: 30px">Cart of Ordered Products</h2>
             <div class="col-md-12">
                 <div>
                     <div>
                         <table class="table table-sm" style="text-align: center">
                             <thead class="thead-dark" style="height: 50px">
                             <tr>
-                                <th>Order Line Id</th>
-                                <th>Order Id</th>
-                                <th>Product Id</th>
+                                <th>Name</th>
+                                <th>Price</th>
                             </tr>
                             </thead>
-                            {{#each order_line}}
+                            {{#each products}}
                                 <tr>
-                                    <td style="vertical-align:middle">{{this.id}}</td>
-                                    <td style="vertical-align:middle">{{this.customerOrderId}}</td>
-                                    <td style="vertical-align:middle">{{this.productId}}</td>
+                                    <td style="vertical-align:middle">{{this.name}}</td>
+                                    <td style="vertical-align:middle">{{this.price}}</td>
                                 </tr>
                             {{/each}}
                             <tr>
