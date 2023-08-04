@@ -70,7 +70,8 @@ public class ProductController extends Controller {
     }
 
     public String edit(Request request, @SuppressWarnings("unused") Response response) {
-        ProductViewModel viewModel = productService.getById(request);
+        Long id = parseLong(request.params(":id"));
+        ProductViewModel viewModel = productService.getById(id);
 
         Map<String, Object> model = new HashMap<>();
         model.put("product", viewModel);

@@ -25,19 +25,20 @@ public class OrderLineController extends Controller {
     public String insert(Request request, @SuppressWarnings("unused") Response response) {
         OrderLineModel orderLineModel = new OrderLineModel();
 
-        Long id = parseLong(request.params(":id"));
+        Long productId = parseLong(request.params(":id"));
         Object orderId = request.session().attribute("attribute");
 
         orderLineModel.setCustomerOrderId((Long) orderId);
-        orderLineModel.setProductId(id);
+        orderLineModel.setProductId(productId);
         orderLineService.insert(orderLineModel);
 
-        ProductViewModel product = productService.getById(request);
+        ProductViewModel product = productService.getById(productId);
 
         Map<String, Object> model = new HashMap<>();
         model.put("product", product);
 
         List<OrderLineViewModel> orderLines = getByOrderId((Long) orderId);
+
         model.put("order_line", orderLines);
 
         return render("order_line/order_line.hbs", model);
@@ -45,5 +46,10 @@ public class OrderLineController extends Controller {
 
     public List<OrderLineViewModel> getByOrderId(Long orderId) {
         return orderLineService.getByOrderId(orderId);
+    }
+
+    public List<ProductViewModel> getByOrderLineId(Long orderLineId) {
+
+        return null;
     }
 }

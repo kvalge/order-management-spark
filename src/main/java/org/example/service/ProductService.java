@@ -38,8 +38,8 @@ public class ProductService {
      * Converts Object type returned by id from the database via Repository class to ProductViewModel type
      * in Mapper class.
      */
-    public ProductViewModel getById(Request request) {
-        Object productObject = productRepository.getById(request);
+    public ProductViewModel getById(Long id) {
+        Object productObject = productRepository.getById(id);
 
         return productMapper.entityToViewModel(productObject);
     }

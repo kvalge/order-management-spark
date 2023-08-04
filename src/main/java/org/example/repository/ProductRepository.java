@@ -2,13 +2,10 @@ package org.example.repository;
 
 import org.example.database.DatabaseQuery;
 import org.example.model.entity_models.ProductModel;
-import spark.Request;
 
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-
-import static java.lang.Long.parseLong;
 
 import static org.example.constants.Constants.WHERE_ID;
 
@@ -24,8 +21,7 @@ public class ProductRepository {
         return databaseQuery.getAll(ProductModel.TABLE_NAME);
     }
 
-    public Object getById(Request request) {
-        Long id = parseLong(request.params(":id"));
+    public Object getById(Long id) {
         String condition = WHERE_ID + id;
 
         return databaseQuery.getByAttribute(ProductModel.TABLE_NAME, condition);
