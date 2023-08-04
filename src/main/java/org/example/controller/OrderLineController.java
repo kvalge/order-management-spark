@@ -40,13 +40,7 @@ public class OrderLineController extends Controller {
 
         List<OrderLineViewModel> orderLines = getByOrderId((Long) orderId);
 
-        List<ProductViewModel> productViewModels = new ArrayList<>();
-
-        for (OrderLineViewModel viewModel : orderLines) {
-            Long prodId = viewModel.getProductId();
-            ProductViewModel productViewModel = productService.getById(prodId);
-            productViewModels.add(productViewModel);
-        }
+        List<ProductViewModel> productViewModels = getProductViewModels(orderLines);
 
         model.put("products", productViewModels);
 
@@ -57,8 +51,14 @@ public class OrderLineController extends Controller {
         return orderLineService.getByOrderId(orderId);
     }
 
-    public List<ProductViewModel> getByOrderLineId(Long orderLineId) {
+    private List<ProductViewModel> getProductViewModels(List<OrderLineViewModel> orderLines) {
+        List<ProductViewModel> productViewModels = new ArrayList<>();
 
-        return null;
+        for (OrderLineViewModel viewModel : orderLines) {
+            Long prodId = viewModel.getProductId();
+            ProductViewModel productViewModel = productService.getById(prodId);
+            productViewModels.add(productViewModel);
+        }
+        return productViewModels;
     }
 }
