@@ -8,6 +8,7 @@ import org.example.service.ProductService;
 import spark.Request;
 import spark.Response;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -22,8 +23,10 @@ public class OrderLineController extends Controller {
 
     /**
      * Inserts the new order line with the selected product and the order id.
-     * Inserts to the template model the just inserted new product.
-     * Inserts to the template model all ordered products of the order line by its id.
+     * Inserts to the template model:
+     *  just inserted new product;
+     *  all ordered products of the order line by its id;
+     *  total price of ordered products.
      */
     public String insert(Request request, @SuppressWarnings("unused") Response response) {
         OrderLineModel orderLineModel = new OrderLineModel();
@@ -43,8 +46,10 @@ public class OrderLineController extends Controller {
         List<OrderLineViewModel> orderLines = getByOrderId((Long) orderId);
 
         List<ProductViewModel> productViewModels = getProductViewModels(orderLines);
-
         model.put("products", productViewModels);
+
+        String totalPrice = getTotalPrice(productViewModels);
+        model.put("total", totalPrice);
 
         return render("order_line/order_line.hbs", model);
     }
@@ -65,5 +70,18 @@ public class OrderLineController extends Controller {
             productViewModels.add(productViewModel);
         }
         return productViewModels;
+    }
+
+    private String getTotalPrice(List<ProductViewModel> productViewModels) {
+        float totalPrice = 0;
+
+        for (ProductViewModel productViewModel : productViewModels) {
+            String price = productViewModel.getPrice();
+            float floatPrice = Float.parseFloat(price);
+            totalPrice = totalPrice + floatPrice;
+        }
+        DecimalFormat df = new DecimalFormat("#.##");
+
+        return df.format(totalPrice);
     }
 }
