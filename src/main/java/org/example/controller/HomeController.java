@@ -10,10 +10,9 @@ public class HomeController extends Controller{
 
     private final ProductController productController = new ProductController();
 
-    public String index(Request request, Response response) {
-        Map<String, Object> model = new HashMap<>();
+    public String index(@SuppressWarnings("unused") Request request, @SuppressWarnings("unused") Response response) {
         Map<String, Object> products = productController.getAllProductsAndValidate();
-        model.putAll(products);
+        Map<String, Object> model = new HashMap<>(products);
 
         return render("home.hbs", model);
     }
