@@ -16,6 +16,5 @@ public class HomeController extends Controller{
         model.putAll(products);
 
         return render("home.hbs", model);
-
     }
 }
