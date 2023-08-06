@@ -9,5 +9,6 @@
     <file url="file://$PROJECT_DIR$/src/main/resources/db/migration/V4__Alter_customer_order_table.sql" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/src/main/resources/db/migration/V5__Alter_customer_order_table.sql" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/src/main/resources/db/migration/V6__Create_order_line_table.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/db/migration/V7__Alter_product_table.sql" dialect="GenericSQL" />
   </component>
 </project>

@@ -9,6 +9,7 @@ public class ProductViewModel {
     private String name;
     private String sku_code;
     private String price;
+    private String image;
 
     @SuppressWarnings("unused")
     public Long getId() {
@@ -44,5 +45,13 @@ public class ProductViewModel {
 
     public void setPrice(String price) {
         this.price = price;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }
