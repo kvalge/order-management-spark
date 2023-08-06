@@ -9,7 +9,7 @@ Database migration tool: Flyway.
 Template engine: Handlebars.  
 Logging API: SLF4J.  
 
-Used IDE: IntelliJ IDEA 2023.2 EAP.  
+IDE: IntelliJ IDEA 2023.2 EAP.  
 
 ## Business logic  
 Inserting (register) the new customer data also creates the new order related to the customer by id. On the order page 

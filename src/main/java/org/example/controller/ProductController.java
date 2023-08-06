@@ -38,7 +38,10 @@ public class ProductController extends Controller {
             return render("product/product.hbs", model);
         }
 
-        return render("home.hbs", model);
+        Map<String, Object> products = getAllProductsAndValidate();
+        model.putAll(products);
+
+        return render("product/product.hbs", model);
     }
 
     /**

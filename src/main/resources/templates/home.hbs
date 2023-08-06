@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
           integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <title>Home</title>
 </head>
 <body style="margin: 0 auto; width: 960px; background-color: ghostwhite;">
@@ -19,10 +22,19 @@
                     <a class="nav-link" href="/customer">Register</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/product">Products</a>
+                    <a class="nav-link" href="/order">Orders</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/order">Orders</a>
+                    <a class="nav-link" href="/cart">Cart</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Admin
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/product">Product Management</a>
+                    </div>
                 </li>
             </ul>
         </div>
@@ -31,22 +43,34 @@
 <div class="container-sm" style="text-align: center">
     <div class="d-flex justify-content-center align-items-center">
         <div class="content" style="margin: 30px;">
-            <h1>Orders Management</h1>
-            {{#if message}}
-                <h4 style="font-weight: bold; color: limegreen; margin: 10px">{{message}}</h4>
-            {{/if}}
-            <div class="content" style="padding: 10px">
-                <button onclick="location.href='/customer';" class="btn btn-primary">
-                    Customer Registration
-                </button>
-            </div>
-            <div class="content" style="padding: 10px">
-                <button onclick="location.href='/product';" class="btn btn-primary">
-                    Products
-                </button>
+            <h1>Board Games Shop</h1>
+            <div class="container-sm" style="text-align: center">
+                <div class="d-flex justify-content-center align-items-center">
+                    <div class="content" style="margin: 30px;">
+                        <div>
+                            <table class="table table-sm" style="text-align: center">
+                                <thead class="thead-dark" style="height: 50px">
+                                <tr>
+                                    <th>Product Name</th>
+                                    <th>Price</th>
+                                </tr>
+                                </thead>
+                                {{#each product}}
+                                    <tr>
+                                        <td style="vertical-align:middle">{{this.name}}</td>
+                                        <td style="vertical-align:middle">{{this.price}}</td>
+                                    </tr>
+                                {{/each}}
+                                <tr>
+                            </table>
+                            <hr>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+</div>
 </div>
 </body>
 </html>

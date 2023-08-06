@@ -1,10 +1,7 @@
 package org.example;
 
-import org.example.controller.CustomerOrderController;
-import org.example.controller.OrderLineController;
-import org.example.controller.ProductController;
+import org.example.controller.*;
 import org.example.database.DatabaseMigrator;
-import org.example.controller.CustomerController;
 
 import spark.ModelAndView;
 import spark.template.handlebars.HandlebarsTemplateEngine;
@@ -19,17 +16,19 @@ public class ApplicationOrderManagement {
         DatabaseMigrator databaseMigrator = new DatabaseMigrator();
         databaseMigrator.migrate();
 
+        HomeController homeController = new HomeController();
         CustomerController customerController = new CustomerController();
         ProductController productController = new ProductController();
         CustomerOrderController customerOrderController = new CustomerOrderController();
         OrderLineController orderLineController = new OrderLineController();
 
-        get("/home", (request, response) ->
-                new ModelAndView(null, "home.hbs"), new HandlebarsTemplateEngine());
-
         get("/customer", (request, response) ->
                 new ModelAndView(null, "customer/customer.hbs"), new HandlebarsTemplateEngine());
 
+        get("/cart", (request, response) ->
+                new ModelAndView(null, "order_line/cart.hbs"), new HandlebarsTemplateEngine());
+
+        get("/home", homeController::index);
         get("/product", productController::getAll);
         get("/product/:id", productController::edit);
         get("/order", customerOrderController::toOrder);

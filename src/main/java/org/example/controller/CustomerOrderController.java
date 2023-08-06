@@ -32,7 +32,7 @@ public class CustomerOrderController extends Controller {
     /**
      * Renders order.hbs with model with all products and the order id.
      */
-    public String toOrder(Request request, Response response) {
+    public String toOrder(Request request, @SuppressWarnings("unused") Response response) {
         Map<String, Object> model = new HashMap<>();
         Map<String, Object> products = productController.getAllProductsAndValidate();
         model.putAll(products);
