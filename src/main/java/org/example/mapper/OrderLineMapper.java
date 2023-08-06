@@ -29,7 +29,7 @@ public class OrderLineMapper {
         OrderLineViewModel viewModel = new OrderLineViewModel();
         viewModel.setId(Long.valueOf(objectSplit[0].substring(1)));
         viewModel.setCustomerOrderId(Long.valueOf(objectSplit[1].substring(1)));
-        viewModel.setProductId(Long.valueOf(objectSplit[2].substring(1, 2)));
+        viewModel.setProductId(Long.valueOf(objectSplit[2].substring(1, objectSplit[2].length()-1)));
 
         return viewModel;
     }
