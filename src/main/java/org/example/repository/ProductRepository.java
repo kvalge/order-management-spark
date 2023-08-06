@@ -41,6 +41,7 @@ public class ProductRepository {
         map.put("name", product.getName());
         map.put("sku_code", product.getSku_code());
         map.put("price", product.getPrice());
+        map.put("image", product.getImage());
 
         return map;
     }

@@ -47,18 +47,16 @@
             <div class="container-sm" style="text-align: center">
                 <div class="d-flex justify-content-center align-items-center">
                     <div class="content" style="margin: 30px;">
+                        <button onclick="location.href='/customer';" class="btn btn-primary" style="margin-bottom: 20px">
+                            Register to Order
+                        </button>
                         <div>
                             <table class="table table-sm" style="text-align: center">
-                                <thead class="thead-dark" style="height: 50px">
-                                <tr>
-                                    <th>Product Name</th>
-                                    <th>Price</th>
-                                </tr>
-                                </thead>
                                 {{#each product}}
                                     <tr>
                                         <td style="vertical-align:middle">{{this.name}}</td>
                                         <td style="vertical-align:middle">{{this.price}}</td>
+                                        <td><img src="{{this.image}}" alt="game" style="width:120px;height:100px;"></td>
                                     </tr>
                                 {{/each}}
                                 <tr>

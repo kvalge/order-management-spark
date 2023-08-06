@@ -5,7 +5,6 @@ import org.example.model.view_models.ProductViewModel;
 import spark.Request;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
@@ -21,6 +20,7 @@ public class ProductMapper {
         UUID uuid = UUID.randomUUID();
         product.setSku_code(uuid.toString());
         product.setPrice(request.queryParams("price"));
+        product.setImage(request.queryParams("image"));
 
         return product;
     }
@@ -57,6 +57,7 @@ public class ProductMapper {
         productViewModel.setName(objectSplit[1]);
         productViewModel.setSku_code(objectSplit[2]);
         productViewModel.setPrice(objectSplit[3].substring(0, 6));
+        productViewModel.setImage(objectSplit[4].substring(1,objectSplit[4].length()-1));
 
         return productViewModel;
     }
